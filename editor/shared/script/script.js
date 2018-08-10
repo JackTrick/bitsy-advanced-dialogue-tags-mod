@@ -138,80 +138,6 @@ function deprecatedFunc(environment,parameters,onReturn) {
 	onReturn(null);
 }
 
-// bitsy-advanced-dialogue-tags -jacktrick
-// Implement the {exitNow} dialog function. It exits to the destination room
-// and X/Y coordinates right damn now.
-function exitRoomNowFunc(environment,parameters,onReturn) {
-	var exitParams = _getExitParams('exitNow', parameters);
-	if (!exitParams) {
-		return;
-	}
-
-	doPlayerExit(exitParams);
-	onReturn(null);
-}
-
-// bitsy-advanced-dialogue-tags -jacktrick
-// Implement the {exit} dialog function. It saves the room name and
-// destination X/Y coordinates so we can travel there after the dialog is over.
-function exitRoomFunc(environment,parameters,onReturn) {	 
-	var exitParams = _getExitParams('exit', parameters);
-	if (!exitParams) {
-		return;
-	}
-
-	doPlayerExit(exitParams);
-}
-
-// bitsy-advanced-dialogue-tags -jacktrick
-// fetches the exit parameters used for the exitRoomFunc and exitRoomNowFunc
-function _getExitParams(exitFuncName, parameters) {
-	var params = parameters[0].split(',');
-	var roomName = params[0];
-	var x = params[1];
-	var y = params[2];
-	var coordsType = (params[3] || 'exit').toLowerCase();
-	var useSpriteCoords = coordsType === 'sprite';
-	
-	var roomId = getRoom(roomName).id;
-	
-	if (!roomName || x === undefined || y === undefined) {
-		console.warn(' {' + exitFuncName + '} was missing parameters! Usage: {' +
-			exitFuncName + ' "roomname,x,y"}');
-		return null;
-	}
-
-	if (roomId === undefined) {
-		console.warn(" Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
-		return null;
-	}
-	return {
-		room: roomId,
-		x: Number(x),
-		y: useSpriteCoords ? 15 - Number(y) : Number(y)
-	};
-}
-
-/**
- * bitsy-advanced-dialogue-tags -jacktrick* 
- * Helper for getting room by name or id
- * @param {string} name id or name of room to return
- * @return {string} room, or undefined if it doesn't exist
- */
-function getRoom(name) {
-	var id = room.hasOwnProperty(name) ? name : names.room.get(name);
-	return room[id];
-}
-
-// bitsy-advanced-dialogue-tags -jacktrick
-// dest === {room: Room, x: Int, y: Int}
-function doPlayerExit(dest) {
-	player().room = dest.room;
-	player().x = dest.x;
-	player().y = dest.y;
-	curRoom = dest.room;
-}
-
 function printFunc(environment,parameters,onReturn) {
 	// console.log("PRINT FUNC");
 	// console.log(parameters);
@@ -311,6 +237,255 @@ function shakyFunc(environment,parameters,onReturn) {
 	addOrRemoveTextEffect(environment,"shk");
 	onReturn(null);
 }
+
+/**
+* BEGIN ADDED FUNCS FOR bitsy-advanced-dialogue-tags -jacktrick
+**/
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exitNow} dialog function. It exits to the destination room
+// and X/Y coordinates right damn now.
+function exitRoomNowFunc(environment,parameters,onReturn) {
+	var exitParams = _getExitParams('exitNow', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+	onReturn(null);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exit} dialog function. It saves the room name and
+// destination X/Y coordinates so we can travel there after the dialog is over.
+function exitRoomFunc(environment,parameters,onReturn) {	 
+	var exitParams = _getExitParams('exit', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// fetches the exit parameters used for the exitRoomFunc and exitRoomNowFunc
+function _getExitParams(exitFuncName, parameters) {
+	var params = parameters[0].split(',');
+	var roomName = params[0];
+	var x = params[1];
+	var y = params[2];
+	var coordsType = (params[3] || 'exit').toLowerCase();
+	var useSpriteCoords = coordsType === 'sprite';
+	
+	var roomId = getRoom(roomName).id;
+	
+	if (!roomName || x === undefined || y === undefined) {
+		console.warn(' {' + exitFuncName + '} was missing parameters! Usage: {' +
+			exitFuncName + ' "roomname,x,y"}');
+		return null;
+	}
+
+	if (roomId === undefined) {
+		console.warn(" Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
+		return null;
+	}
+	return {
+		room: roomId,
+		x: Number(x),
+		y: useSpriteCoords ? 15 - Number(y) : Number(y)
+	};
+}
+
+/**
+ * bitsy-advanced-dialogue-tags -jacktrick* 
+ * Helper for getting room by name or id
+ * @param {string} name id or name of room to return
+ * @return {string} room, or undefined if it doesn't exist
+ */
+function getRoom(name) {
+	var id = room.hasOwnProperty(name) ? name : names.room.get(name);
+	return room[id];
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// dest === {room: Room, x: Int, y: Int}
+function doPlayerExit(dest) {
+	player().room = dest.room;
+	player().x = dest.x;
+	player().y = dest.y;
+	curRoom = dest.room;
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+//The actual function. Makes use of the existing AddLinebreak function within
+//the dialogue parser to automatically add an appropriate number of line breaks
+//based on the current dialogue buffer size rather than the user having to count
+// @author Sean S. LeBlanc, David Mowatt
+function paragraphbreakFunc(environment, parameters, onReturn) {
+    var a = environment.GetDialogBuffer().CurRowCount();
+    for (var i = 0; i < 3 - a; ++i) {
+        environment.GetDialogBuffer().AddLinebreak();
+    }
+    onReturn(null);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {endNow} dialog function. It starts ending narration, if any,
+// and restarts the game right damn now.
+function endGameNowFunc(environment,parameters,onReturn) {
+	onReturn(null);
+	startNarrating(parameters[0] || null, true);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {end} dialog function. It schedules the game to end after the current dialog finishes.
+function endGameFunc(environment,parameters,onReturn) {	 
+	startNarrating(parameters[0] || null, true);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Helper for getting image by name or id
+Args:
+	name: id or name of image to return
+	 map: map of images (e.g. `sprite`, `tile`, `item`)
+Returns: the image in the given map with the given name/id
+ */
+function getImage(name, map) {
+	var id = map.hasOwnProperty(name) ? name : Object.keys(map).find(function (e) {
+		return map[e].name == name;
+	});
+	return map[id];
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Args:
+	   id: string id or name
+	frame: animation frame (0 or 1)
+	  map: map of images (e.g. `sprite`, `tile`, `item`)
+Returns: a single frame of a image data
+*/
+function getImageData(id, frame, map) {
+	return imageStore.source[getImage(id, map).drw][frame];
+}
+
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Updates a single frame of image data
+Args:
+	     id: string id or name
+	  frame: animation frame (0 or 1)
+	    map: map of images (e.g. `sprite`, `tile`, `item`)
+	newData: new data to write to the image data
+*/
+function setImageData(id, frame, map, newData) {
+	var drawing = getImage(id, map);
+	var drw = drawing.drw;
+	imageStore.source[drw][frame] = newData;
+	if (drawing.animation.isAnimated) {
+		drw += "_" + frame;
+	}
+	for (var pal in palette) {
+		if (palette.hasOwnProperty(pal)) {
+			var col = drawing.col;
+			var colStr = "" + col;
+			imageStore.render[pal][colStr][drw] = imageDataFromImageSource(newData, pal, col);
+		}
+	}
+}
+
+
+// bitsy-advanced-dialogue-tags -jacktrick
+function editImage(environment, parameters, onReturn) {
+  var i;
+
+  // parse parameters
+  var params = parameters[0].split(/,\s?/);
+  params[0] = (params[0] || "").toLowerCase();
+  var mapId = params[0];
+  var tgtId = params[1];
+  var srcId = params[2];
+
+  if (!mapId || !tgtId || !srcId) {
+    throw new Error('Image expects three parameters: "map, target, source", but received: "' + params.join(', ') + '"');
+  }
+
+  // get objects
+  var mapObj = maps[mapId];
+  if (!mapObj) {
+    throw new Error('Invalid map "' + mapId + '". Try "SPR", "TIL", or "ITM" instead.');
+  }
+  var tgtObj = getImage(tgtId, mapObj);
+  if (!tgtObj) {
+    throw new Error('Target "' + tgtId + '" was not the id/name of a ' + mapId + '.');
+  }
+  var srcObj = getImage(srcId, mapObj);
+  if (!srcObj) {
+    throw new Error('Source "' + srcId + '" was not the id/name of a ' + mapId + '.');
+  }
+
+  // copy animation from target to source
+  tgtObj.animation = {
+    frameCount: srcObj.animation.frameCount,
+    isAnimated: srcObj.animation.isAnimated,
+    frameIndex: srcObj.animation.frameIndex
+  };
+  for (i = 0; i < srcObj.animation.frameCount; ++i) {
+    setImageData(tgtId, i, mapObj, getImageData(srcId, i, mapObj));
+  }
+
+  // done
+  if (onReturn) {
+    onReturn(null);
+  }
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+function editPalette(environment, parameters, onReturn) {
+  // parse parameters
+  var params = parameters[0].split(/,\s?/);
+  params[0] = (params[0] || "").toLowerCase();
+  var mapId = params[0];
+  var tgtId = params[1];
+  var palId = params[2];
+
+  if (!mapId || !tgtId || !palId) {
+    throw new Error('Image expects three parameters: "map, target, palette", but received: "' + params.join(', ') + '"');
+  }
+
+  // get objects
+  var mapObj = maps[mapId];
+  if (!mapObj) {
+    throw new Error('Invalid map "' + mapId + '". Try "SPR", "TIL", or "ITM" instead.');
+  }
+  var tgtObj = getImage(tgtId, mapObj);
+  if (!tgtObj) {
+    throw new Error('Target "' + tgtId + '" was not the id/name of a ' + mapId + '.');
+  }
+  var palObj = parseInt(palId);
+  if (isNaN(palObj)) {
+    throw new Error('Palette "' + palId + '" was not a number.');
+  }
+
+  // set palette
+  tgtObj.col = palObj;
+
+  // update images in cache
+  renderImageForAllPalettes(tgtObj);
+	
+
+  // done
+  if (onReturn) {
+    onReturn(null);
+  }
+}
+
+/**
+* END ADDED FUNCS FOR bitsy-advanced-dialogue-tags -jacktrick
+**/
+
 
 /* BUILT-IN OPERATORS */
 function setExp(environment,left,right,onReturn) {
@@ -450,6 +625,17 @@ function addDeferredDialogTag(functionMap, tag, fn)
 function defineAdvancedDialogTags(functionMap){
 	addDialogTag(functionMap, "exitNow", exitRoomNowFunc);
 	addDeferredDialogTag(functionMap, "exit", exitRoomFunc);
+
+	addDialogTag(functionMap, "p", paragraphbreakFunc);
+
+	addDialogTag(functionMap, "endNow", endGameNowFunc);
+	addDeferredDialogTag(functionMap, "end", endGameFunc);
+
+	addDeferredDialogTag(functionMap, "image", editImage);
+	addDialogTag(functionMap, "imageNow", editImage);
+
+	addDeferredDialogTag(functionMap, "imagePal", editPalette);
+	addDialogTag(functionMap, "imagePalNow", editPalette);	
 }
 
 /* ENVIRONMENT */

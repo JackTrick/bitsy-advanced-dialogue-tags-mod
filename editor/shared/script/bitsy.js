@@ -73,6 +73,9 @@ var advancedDialogFuncMgr = {
 	deferredDialogFunctions: {}
 };
 
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+var maps;
+
 function updateNamesFromCurData() {
 	names.room = new Map();
 	for(id in room) {
@@ -248,6 +251,16 @@ function load_game(game_data, startWithTitle) {
 	// setInterval(updateLoadingScreen, 300); // hack test
 
 	onready(startWithTitle);
+
+	// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+	maps = {
+	    spr: sprite,
+	    sprite: sprite,
+	    til: tile,
+	    tile: tile,
+	    itm: item,
+	    item: item,
+	};
 }
 
 function reset_cur_game() {
@@ -2081,6 +2094,7 @@ function getTileImage(t,palId,frameIndex) {
 			drwId += "_" + t.animation.frameIndex;
 		}
 	}
+	
 	return imageStore.render[ palId ][ t.col ][ drwId ];
 }
 
