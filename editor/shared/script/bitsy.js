@@ -28,9 +28,41 @@ var names = {
 	/*ending : new Map()*/ // TODO
 };
 
-// HACK
-var kitsy = kitsyInit();
+/**
+@file bitsy-advanced-dialogue-functions
+@author jacktrick
 
+Modified from Bitsy 5.1
+
+================
+
+Pretty much all credit for this goes to Sean S. LeBlanc and @mildmojo for the original hacks:
+https://github.com/seleb/bitsy-hacks
+
+@summary adding extended dialogue functionality to the bitsy editor. This includes:
+exit-from-dialogue       - https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js
+end-from-dialogue        - https://github.com/seleb/bitsy-hacks/blob/master/dist/end-from-dialog.js
+edit-image-from-dialogue - https://github.com/seleb/bitsy-hacks/blob/master/dist/edit%20image%20from%20dialog.js
+paragraph-break-hack     - https://github.com/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js
+
+================
+
+My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a
+developer add them to the html post-export, and letting kitsy inject them where appropriate.
+
+I figured the dialogue functions were relatively safe to add to the bitsy maker, as the functions
+could just exist 'under the hood' unless someone actually wanted to use them.
+
+If I've stepped on anyone's toes (particularly Adam Le Doux), do let me know.
+Bitsy is a marvelous thing, and ultimately I just want to be helpful to its community <3
+
+================
+
+I chose to separate from kitsy, as what I mostly use is just dialogFunctions and deferredDialogFunctions.
+
+*/
+
+var kitsy = kitsyInit();
 
 function kitsyInit()
 {
