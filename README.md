@@ -76,13 +76,50 @@ TIPS:
   - This is a destructive operation! Unless you have a copy of an overwritten image, you won't be able to get it back during that run
 
 ### End From Dialog
-Blah
+Lets you end the game from dialog (including inside conditionals).
+Using the (end) function in any part of a series of dialog will make the
+game end after the dialog is finished. Ending the game resets it back to the
+intro.
+Using (endNow) at the end of a sentence will display the whole sentence and
+immediately clear the background. No further dialog from that passage will
+display, and the game will reset when you proceed. Using (endNow) with
+narration text will immediately exit the dialog, clear the background, and
+show the ending narration in an ending-style centered dialog box.
+Usage: (end)
+       (end "<ending narration>")
+       (endNow)
+       (endNow "<ending narration>")
+Example: (end)
+         (end "Five friars bid you goodbye. You leave the temple, hopeful.")
+         (endNow "The computer is still online! The chamber floods with neurotoxin.")
 
 ### Exit From Dialog
-Blah
+Lets you exit to another room from dialog (including inside conditionals). Use
+it to make an invisible sprite that acts as a conditional exit, use it to warp
+somewhere after a conversation, use it to put a guard at your gate who only
+lets you in once you're disguised, use it to require payment before the
+ferryman will take you across the river.
+Using the (exit) function in any part of a series of dialog will make the
+game exit to the new room after the dialog is finished. Using (exitNow) will
+immediately warp to the new room, but the current dialog will continue.
+WARNING: In exit coordinates, the TOP LEFT tile is (0,0). In sprite coordinates,
+         the BOTTOM LEFT tile is (0,0). If you'd like to use sprite coordinates,
+         add the word "sprite" as the fourth parameter to the exit function.
+Usage: (exit "<room name>,<x>,<y>")
+       (exit "<room name>,<x>,<y>,sprite")
+       (exitNow "<room name>,<x>,<y>")
+       (exitNow "<room name>,<x>,<y>,sprite")
+Example: (exit "FinalRoom,8,4")
+         (exitNow "FinalRoom,8,11,sprite")
 
 ### Paragraph Break
-Blah
+Adds a (p) tag to the dialogue parser that forces the following text to 
+start on a fresh dialogue screen, eliminating the need to spend hours testing
+line lengths or adding multiple line breaks that then have to be reviewed
+when you make edits or change the font size.
+Usage: (p)
+       
+Example: I am a cat(p)and my dialogue contains multitudes
 
 ## Example File
 An example level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
