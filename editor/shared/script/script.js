@@ -589,6 +589,7 @@ function subExp(environment,left,right,onReturn) {
  */
 function addDialogTag(functionMap, tag, fn)
 {
+	advancedDialogFuncMgr.dialogFunctions[tag] = fn;
 	functionMap.set(tag, fn);
 }
 

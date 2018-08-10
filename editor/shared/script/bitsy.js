@@ -48,7 +48,7 @@ paragraph-break-hack     - https://github.com/seleb/bitsy-hacks/blob/master/dist
 ================
 
 My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a
-developer add them to the html post-export, and letting kitsy inject them where appropriate.
+developer add them to the html post-export and letting kitsy inject them where appropriate.
 
 I figured the dialogue tags were relatively safe to add to the bitsy maker, as the tags
 could just exist 'under the hood' unless someone actually wanted to use them.
@@ -229,6 +229,16 @@ function attachCanvas(c) {
 
 var curGameData = null;
 function load_game(game_data, startWithTitle) {
+	
+	// bitsy-advanced-dialogue-tags -jacktrick
+	convertDialogTags(game_data, )
+	var dialogFuncs = advancedDialogFuncMgr.dialogFunctions;
+	
+	for (var tag in dialogFuncs) {
+		game_data = convertDialogTags(game_data, tag);
+	}
+
+
 	curGameData = game_data; //remember the current game (used to reset the game)
 
 	dialogBuffer.Reset();
@@ -263,10 +273,23 @@ function load_game(game_data, startWithTitle) {
 	};
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+// Rewrite custom functions' parentheses to curly braces for Bitsy's
+// interpreter. Unescape escaped parentheticals, too.
+function convertDialogTags(input, tag) {
+	return input
+		.replace(new RegExp('\\\\?\\((' + tag + '\\s+(".+?"|.+?))\\\\?\\)', 'g'), function(match, group){
+			if(match.substr(0,1) === '\\') {
+				return '('+ group + ')'; // Rewrite \(tag "..."|...\) to (tag "..."|...)
+			}
+			return '{'+ group + '}'; // Rewrite (tag "..."|...) to {tag "..."|...}
+		});
+}
+
 function reset_cur_game() {
 	if (curGameData == null) return; //can't reset if we don't have the game data
 	stopGame();
-	clearGameData();
+	clearGameData();	
 	load_game(curGameData);
 }
 
