@@ -44,43 +44,48 @@ but you will need to manually add the hacks to your HTML file for them to work.
 
 ### Edit Image From Dialog
 You can use this to edit the image data of sprites (including the player avatar), items, and tiles through dialog.
-Image data can be replaced with data from another image, and the palette index can be set.
-(image "map, target, source")
-Parameters:
-  map:    Type of image (SPR, TIL, or ITM)
-  target: id/name of image to edit
-  source: id/name of image to copy
-(imageNow "map, target, source")
-Same as (image), but applied immediately instead of after dialog is closed.
-(imagePal "map, target, palette")
-Parameters:
-  map:    Type of image (SPR, TIL, or ITM)
-  target: id/name of image to edit
-  source: palette index (0 is bg, 1 is tiles, 2 is sprites/items, anything higher requires editing your game data to include more)
-(imagePalNow "map, target, palette")
-Same as (imagePal), but applied immediately instead of after dialog is closed.
-Examples:
-  (image "SPR, A, a")
-  (imageNow "TIL, a, floor")
-  (image "ITM, a, b")
-  (imagePal "SPR, A, 1")
-  (imagePalNow "TIL, floor, 2")
-HOW TO USE:
-  1. Copy-paste this script into a new script tag after the Bitsy source code.
-     It should appear *before* any other mods that handle loading your game
-     data so it executes *after* them (last-in first-out).
+
+Image data can be replaced with data from another image with (image) and (imageNow), or the palette index can be set with (imagePal) and (imagePalNow).
+
+Using the (image) or (imagePal) functions in any part of a series of dialog will edit the image after the dialog is finished.
+
+Using (imageNow) or (imagePalNow) will immediately edit the image.
+
 TIPS:
   - The player avatar is always a sprite with id "A"; you can edit your gamedata to give them a name for clarity
   - You can use the full names or shorthand of image types (e.g. "SPR" and "sprite" will both work)
   - The "source" images don't have to be placed anywhere; so long as they exist in the gamedata they'll work
   - This is a destructive operation! Unless you have a copy of an overwritten image, you won't be able to get it back during that run
 
+```
+Parameters:
+  (for image and imageNow)
+     map:    Type of image (SPR, TIL, or ITM)
+     target: id/name of image to edit
+     source: id/name of image to copy
+
+  (for imagePal and imagePalNow)
+     map:    Type of image (SPR, TIL, or ITM)
+     target: id/name of image to edit
+     source: palette index (0 is bg, 1 is tiles, 2 is sprites/items, 
+                           higher requires editing your game data to include more)
+
+Usage: (image "<map>, <target>, <source>")
+       (imageNow "<map>, <target>, <source>")
+       (imagePal "<map>, <target>, <palette>")
+       (imagePalNow "<map>, <target>, <palette>")
+
+Example: (image "SPR, A, a")
+         (imageNow "TIL, a, floor")
+         (image "ITM, a, b")
+         (imagePal "SPR, A, 1")
+         (imagePalNow "TIL, floor, 2")
+```
+
 ### End From Dialog
 Lets you end the game from dialog (including inside conditionals).
 
-Using the (end) function in any part of a series of dialog will make the
-game end after the dialog is finished. Ending the game resets it back to the
-intro.
+Using the (end) function in any part of a series of dialog will make the game end after the dialog is finished. Ending the game resets it back to the intro.
 
 Using (endNow) at the end of a sentence will display the whole sentence and immediately clear the background. No further dialog from that passage will display, and the game will reset when you proceed. 
 
@@ -90,6 +95,7 @@ Usage: (end)
        (end "<ending narration>")
        (endNow)
        (endNow "<ending narration>")
+
 Example: (end)
          (end "Five friars bid you goodbye. You leave the temple, hopeful.")
          (endNow "The computer is still online! The chamber floods with neurotoxin.")
