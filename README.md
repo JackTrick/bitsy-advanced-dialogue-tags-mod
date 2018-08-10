@@ -1,9 +1,9 @@
 
 # bitsy-advanced-dialogue-tags mod
 
-A modified version of [Adam Le Doux](https://twitter.com/adamledoux)'s [Bitsy Game Maker](https://ledoux.itch.io/bitsy).
+A modified version of [Adam Le Doux](https://twitter.com/adamledoux)'s [Bitsy Game Maker](https://ledoux.itch.io/bitsy) (v5.1)
 
-(Modified from Bitsy 5.1)
+Borrowing HEAVILY and offering full credit to [Sean LeBlanc](https://github.com/seleb), @mildmojo, @ducklingsmith, and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
 
 ## Overview
 
@@ -15,84 +15,63 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * :page_with_curl: [paragraph-break](https://github.com/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js): Adds paragraph breaks to the dialogue parser
 
 
-### Prerequisites
+### How To Use
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+* For now, download editor.zip and unpack it into a folder of your choosing.
+* Open the folder, and run index.html in Firefox.
+* Use it as you would standard Bitsy.
 
 ```
-Give the example
+NOTE: THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED.
 ```
 
-And repeat
+### Difference From the Hacks
 
-```
-until finished
-```
+* Rather than using parentheses "()" you should be able to use curly braces "{}" in dialogue to call the hack functions.
+* You should not need to add anything to the exported HTML file to support the above hacks. However, if you want to use any of the other bitsy hacks, you should be able to add them to the bottom of the HTML file as you have in the past.
 
-End with an example of getting some data out of the system or using it for a little demo
+Note, loading and running your HTML in the non-modified Bitsy should still function, but you will need to manually add the hacks to your HTML file for them to work.
 
-## Running the tests
+## Specific Hacks
 
-Explain how to run the automated tests for this system
+### Edit Image From Dialog
+Blah
 
-### Break down into end to end tests
+### End From Dialog
+Blah
 
-Explain what these tests test and why
+### Exit From Dialog
+Blah
 
-```
-Give an example
-```
+### Paragraph Break
+Blah
 
-### And coding style tests
+## Example File
+An example file has been provided.
 
-Explain what these tests test and why
+## Additional Information
 
-```
-Give an example
-```
+My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a
+developer add them to the html post-export and letting kitsy inject them where appropriate.
 
-## Deployment
+I figured the dialogue tags were relatively safe to add to the bitsy maker, as the tags
+could just exist 'under the hood' unless someone actually wanted to use them.
 
-Add additional notes about how to deploy this on a live system
+If I've stepped on anyone's toes (particularly Adam Le Doux), do let me know.
+Bitsy is a marvelous thing, and ultimately I just want to be helpful to its community <3
 
-## Built With
+================
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+I chose to separate from kitsy, as what I mostly use is just dialogFunctions and deferredDialogFunctions.
 
-## Contributing
+Parts of the code I changed can be found accompanied by a comment of:
+  // bitsy-advanced-dialogue-tags -jacktrick
+  Note that this is not me trying to claim total credit for the code there 
+  (again, that goes to Adam, Sean, and @mildmojo). 
+  I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+### Acknowledgements
 
-## Versioning
+Once again, big thanks to [Sean LeBlanc](https://github.com/seleb), @mildmojo, @ducklingsmith, and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-A modified version of [Adam Le Doux](https://twitter.com/adamledoux)'s [Bitsy Game Maker](https://ledoux.itch.io/bitsy).
+Also, thank you to Von_Bednar and the other lovely folks of the bitsy discord channel <3
