@@ -138,68 +138,53 @@ function deprecatedFunc(environment,parameters,onReturn) {
 	onReturn(null);
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exitNow} dialog function. It exits to the destination room
+// and X/Y coordinates right damn now.
 function exitRoomNowFunc(environment,parameters,onReturn) {
-	 console.log("EXIT ROOM NOW FUNC ~");
-	 console.log("~ " + parameters);
-	 if(parameters[0] != undefined && parameters[0] != null){
-	 	console.log("~ " + parameters[0]);
-	 }
-	 if(parameters[1] != undefined && parameters[1] != null){
-	 	console.log("~~ " + parameters[1]);
-	 }
-	 
 	var exitParams = _getExitParams('exitNow', parameters);
 	if (!exitParams) {
-		console.log("~ exit params not found");
 		return;
 	}
 
 	doPlayerExit(exitParams);
 	onReturn(null);
-
-	 /*
-	if( parameters[0] != undefined && parameters[0] != null ) {
-		// console.log(parameters[0]);
-		// console.log(parameters[0].toString());
-		// var textStr = parameters[0].toString();
-		var textStr = "" + parameters[0];
-		// console.log(textStr);
-		var onFinishHandler = function() {
-			// console.log("FINISHED PRINTING ---- SCRIPT");
-			onReturn(null);
-		}; // called when dialog is finished printing
-		environment.GetDialogBuffer().AddText( textStr, onFinishHandler );
-	}
-	else {
-		onReturn(null);
-	}
-	*/
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exit} dialog function. It saves the room name and
+// destination X/Y coordinates so we can travel there after the dialog is over.
+function exitRoomFunc(environment,parameters,onReturn) {	 
+	var exitParams = _getExitParams('exit', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// fetches the exit parameters used for the exitRoomFunc and exitRoomNowFunc
 function _getExitParams(exitFuncName, parameters) {
-	console.log("~ fetching exit params");
 	var params = parameters[0].split(',');
 	var roomName = params[0];
 	var x = params[1];
 	var y = params[2];
 	var coordsType = (params[3] || 'exit').toLowerCase();
 	var useSpriteCoords = coordsType === 'sprite';
-	console.log("~ room name of " + roomName);
-
+	
 	var roomId = getRoom(roomName).id;
-	console.log("~ room id of " + roomId);
-
+	
 	if (!roomName || x === undefined || y === undefined) {
-		console.warn('~ {' + exitFuncName + '} was missing parameters! Usage: {' +
+		console.warn(' {' + exitFuncName + '} was missing parameters! Usage: {' +
 			exitFuncName + ' "roomname,x,y"}');
 		return null;
 	}
 
 	if (roomId === undefined) {
-		console.warn("~ Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
+		console.warn(" Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
 		return null;
 	}
-	console.log("~ returning");
 	return {
 		room: roomId,
 		x: Number(x),
@@ -208,43 +193,23 @@ function _getExitParams(exitFuncName, parameters) {
 }
 
 /**
+ * bitsy-advanced-dialogue-tags -jacktrick* 
  * Helper for getting room by name or id
  * @param {string} name id or name of room to return
  * @return {string} room, or undefined if it doesn't exist
  */
 function getRoom(name) {
-	console.log("~ getRoom: " + name)
 	var id = room.hasOwnProperty(name) ? name : names.room.get(name);
 	return room[id];
 }
 
-
+// bitsy-advanced-dialogue-tags -jacktrick
 // dest === {room: Room, x: Int, y: Int}
 function doPlayerExit(dest) {
-	console.log("~ doing player exit to " + dest.room);
 	player().room = dest.room;
 	player().x = dest.x;
 	player().y = dest.y;
 	curRoom = dest.room;
-}
-
-function exitRoomFunc(environment,parameters,onReturn) {
-	 console.log("EXIT ROOM FUNC ~");
-	 console.log("~ " + parameters);
-	 if(parameters[0] != undefined && parameters[0] != null){
-	 	console.log("~ " + parameters[0]);
-	 }
-	 if(parameters[1] != undefined && parameters[1] != null){
-	 	console.log("~~ " + parameters[1]);
-	 }
-	 
-	var exitParams = _getExitParams('exitNow', parameters);
-	if (!exitParams) {
-		console.log("~ exit params not found");
-		return;
-	}
-
-	doPlayerExit(exitParams);
 }
 
 function printFunc(environment,parameters,onReturn) {
@@ -432,19 +397,63 @@ function subExp(environment,left,right,onReturn) {
 	});
 }
 
-/* HACK */
-function addDialogTag(tag, fn) {
-	addDialogFunction(tag, fn);
-	inject$1(
-		/(var functionMap = new Map\(\);)/,
-		'$1functionMap.set("' + tag + '", kitsy.dialogFunctions.' + tag + ');'
-	);
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ * 
+ * Function is executed immediately when the tag is reached.
+ *
+ * @param {Map}      functionMap Function Map from the Environment
+ * @param {string}           tag Name of tag
+ * @param {Function}         fn  Function to execute, with signature `function(environment, parameters, onReturn){}`
+ *                               environment: provides access to SetVariable/GetVariable (among other things, see Environment in the bitsy source for more info)
+ *                               parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ *                               onReturn: function to call with return value (just call `onReturn(null);` at the end of your function if your tag doesn't interact with the logic system)
+ */
+function addDialogTag(functionMap, tag, fn)
+{
+	functionMap.set(tag, fn);
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ * 
+ * Function is executed after the dialog box.
+ *
+ * @param {Map}      functionMap Function Map from the Environment
+ * @param {string}   tag         Name of tag
+ * @param {Function} fn          Function to execute, with signature `function(environment, parameters){}`
+ *                               environment: provides access to SetVariable/GetVariable (among other things, 
+ *                               see Environment in the bitsy source for more info)
+ *                               parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ */
+function addDeferredDialogTag(functionMap, tag, fn)
+{
+	advancedDialogFuncMgr.dialogFunctions[tag] = fn;
+	advancedDialogFuncMgr.deferredDialogFunctions[tag] = [];
+	functionMap.set(tag, 
+		function(e, p, o){ 
+			advancedDialogFuncMgr.deferredDialogFunctions[tag].push({e:e,p:p}); o(null);
+		});
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+* Helper method that is passed the functionMap from Environment
+* here is where all the new advanced dialogue tags are added
+*/
+function defineAdvancedDialogTags(functionMap){
+	addDialogTag(functionMap, "exitNow", exitRoomNowFunc);
+	addDeferredDialogTag(functionMap, "exit", exitRoomFunc);
+}
 
 /* ENVIRONMENT */
 var Environment = function() {
-	console.log("~ defining environment")
 	var dialogBuffer = null;
 	this.SetDialogBuffer = function(buffer) { dialogBuffer = buffer; };
 	this.GetDialogBuffer = function() { return dialogBuffer; };
@@ -464,23 +473,8 @@ var Environment = function() {
 	functionMap.set("printTile", printTileFunc);
 	functionMap.set("printItem", printItemFunc);
 
-	functionMap.set("exitNow", exitRoomNowFunc)
-
-	kitsy = kitsyInit();
-	kitsy.dialogFunctions = {};
-	kitsy.dialogFunctions["exit"] = exitRoomFunc;
-	console.log("~ exit func: " + kitsy.dialogFunctions["exit"]);
-
-	kitsy.deferredDialogFunctions || {};
-	var deferred = kitsy.deferredDialogFunctions["exit"] = [];
-	functionMap.set("exit", 
-		function(e, p, o){ 
-			console.log("~ exit func setting deferred");
-			kitsy.deferredDialogFunctions["exit"].push({e:e,p:p}); o(null);
-		});
-
-
-	//functionMap.set("exit", exitRoomFunc)
+	// bitsy-advanced-dialogue-tags -jacktrick
+	defineAdvancedDialogTags(functionMap);
 
 	this.HasFunction = function(name) { return functionMap.has(name); };
 	this.EvalFunction = function(name,parameters,onReturn) {

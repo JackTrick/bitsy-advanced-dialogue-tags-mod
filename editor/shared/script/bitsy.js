@@ -29,7 +29,7 @@ var names = {
 };
 
 /**
-@file bitsy-advanced-dialogue-functions
+@file bitsy-advanced-dialogue-tags
 @author jacktrick
 
 Modified from Bitsy 5.1
@@ -39,7 +39,7 @@ Modified from Bitsy 5.1
 Pretty much all credit for this goes to Sean S. LeBlanc and @mildmojo for the original hacks:
 https://github.com/seleb/bitsy-hacks
 
-@summary adding extended dialogue functionality to the bitsy editor. This includes:
+@summary adding extended dialogue tag functionality to the bitsy editor. This includes:
 exit-from-dialogue       - https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js
 end-from-dialogue        - https://github.com/seleb/bitsy-hacks/blob/master/dist/end-from-dialog.js
 edit-image-from-dialogue - https://github.com/seleb/bitsy-hacks/blob/master/dist/edit%20image%20from%20dialog.js
@@ -50,7 +50,7 @@ paragraph-break-hack     - https://github.com/seleb/bitsy-hacks/blob/master/dist
 My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a
 developer add them to the html post-export, and letting kitsy inject them where appropriate.
 
-I figured the dialogue functions were relatively safe to add to the bitsy maker, as the functions
+I figured the dialogue tags were relatively safe to add to the bitsy maker, as the tags
 could just exist 'under the hood' unless someone actually wanted to use them.
 
 If I've stepped on anyone's toes (particularly Adam Le Doux), do let me know.
@@ -60,26 +60,18 @@ Bitsy is a marvelous thing, and ultimately I just want to be helpful to its comm
 
 I chose to separate from kitsy, as what I mostly use is just dialogFunctions and deferredDialogFunctions.
 
+Parts of the code I changed can be found accompanied by a comment of:
+	// bitsy-advanced-dialogue-tags -jacktrick
+	Note that this is not me trying to claim total credit for the code there 
+	(again, that goes to Adam, Sean, and @mildmojo). 
+	I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
 */
 
-var kitsy = kitsyInit();
-
-function kitsyInit()
-{
-	if(kitsy){
-		return kitsy;
-	}
-
-	kitsy = {
-		deferredDialogFunctions: {},
-		queuedInjectScripts: [],
-		queuedBeforeScripts: {},
-		queuedAfterScripts: {}
-	};
-
-	return kitsy;
-}
-
+// bitsy-advanced-dialogue-tags -jacktrick
+var advancedDialogFuncMgr = {
+	dialogFunctions: {},
+	deferredDialogFunctions: {}
+};
 
 function updateNamesFromCurData() {
 	names.room = new Map();
@@ -164,10 +156,17 @@ function clearGameData() {
 
 	fontName = defaultFontName; // TODO : reset font manager too?
 
-	// HACK
-	console.log("~ deferred reset");
-	var deferred = kitsy.deferredDialogFunctions["exit"];
-	deferred.length = 0;
+	// bitsy-advanced-dialogue-tags -jacktrick
+	// Hook into the game reset and make sure data gets cleared
+	var deferredFuncs = advancedDialogFuncMgr.deferredDialogFunctions;
+	var deferred = 0;
+
+	for (var tag in deferredFuncs) {
+	    if (deferredFuncs.hasOwnProperty(tag)) {
+	        deferred = deferredFuncs[tag];
+	        deferred.length = 0;
+	    }
+	}
 }
 
 var width = 128;
@@ -2159,7 +2158,6 @@ var fontManager = new FontManager();
 function onExitDialog() {
 	// var breakShit = null;
 	// breakShit();
-	console.log("EXIT DIALOG");
 	isDialogMode = false;
 	if (isNarrating) isNarrating = false;
 	if (isDialogPreview) {
@@ -2168,16 +2166,21 @@ function onExitDialog() {
 			onDialogPreviewEnd();
 	}
 
-	// HACK
-	var deferred = kitsy.deferredDialogFunctions["exit"];
-	console.log("~ deferred: " + deferred.length)
-	while(deferred.length)
-	{
-		var args = deferred.shift();
-		console.log("~ deferred: " + args.e + " " + args.p + " " + args.o)
-		console.log("~+ " + kitsy.dialogFunctions)
-		console.log("~++ " + kitsy.dialogFunctions["exit"])
-		kitsy.dialogFunctions["exit"](args.e, args.p, args.o);
+	// bitsy-advanced-dialogue-tags -jacktrick
+	// Hook into the dialog finish event and execute the actual function
+	var deferredFuncs = advancedDialogFuncMgr.deferredDialogFunctions;
+	var deferred = 0;
+	
+	for (var tag in deferredFuncs) {
+	    if (deferredFuncs.hasOwnProperty(tag)) {
+	        deferred = deferredFuncs[tag];
+
+	        while(deferred.length)
+	        {
+				var args = deferred.shift();
+				advancedDialogFuncMgr.dialogFunctions[tag](args.e, args.p, args.o);
+	        }
+	    }
 	}
 }
 
