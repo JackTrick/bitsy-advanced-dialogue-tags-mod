@@ -18,6 +18,7 @@ paragraph-break-hack     - https://github.com/seleb/bitsy-hacks/blob/master/dist
 <li><g-emoji class="g-emoji" alias="door" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6aa.png">🚪</g-emoji> <a href="/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js">exit-from-dialog</a>: exit to another room from dialog, including conditionals</li>
 <li><g-emoji class="g-emoji" alias="page_with_curl" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c3.png">📃</g-emoji> <a href="/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js">paragraph-break</a>: Adds paragraph breaks to the dialogue parser</li>
 
+* :paintbrush: [edit image from dialog](https://github.com/seleb/bitsy-hacks/blob/master/dist/edit%20image%20from%20dialog.js) - The web framework used
 :blush:
 
 ### Prerequisites
