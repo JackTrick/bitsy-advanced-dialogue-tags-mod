@@ -40,7 +40,7 @@ Note, loading and running your HTML in the non-modified Bitsy should still funct
 but you will need to manually add the hacks to your HTML file for them to work.
 ```
 
-## Specific Hacks
+## Using the Specific Hacks
 
 ### Edit Image From Dialog
 You can use this to edit the image data of sprites (including the player avatar), items, and tiles through dialog.
@@ -149,12 +149,6 @@ Parts of the code I changed can be found accompanied by a comment of:
 ```
 
 Note that this is not me trying to claim total credit for the code there. I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
-
-### Acknowledgements
-
-Once again, big thanks to [Sean LeBlanc](https://github.com/seleb), @mildmojo, @ducklingsmith, and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
-
-Also, thank you to Von_Bednar and the other lovely folks of the bitsy discord channel for their help <3
 
 ## Other Useful Links
 
