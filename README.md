@@ -158,8 +158,8 @@ Also, thank you to Von_Bednar and the other lovely folks of the bitsy discord ch
 
 ## Other Useful Links
 
-[Bitsy Tutorial](https://www.clairemorleyart.com/a-bitsy-tutorial)
-[Bitsy FAQ](https://docs.google.com/document/d/1jRz3wgkQU3kZN_LGChw4UlMWhVoc145J-euBtkr7NeE/edit#)
-[Bitsy Wiki](http://bitsy.wikia.com/wiki/Bitsy_Wiki)
-[Bitsy Hacks](https://github.com/seleb/bitsy-hacks)
-[Bitsy Discord](https://discord.gg/NYh43Xr)
+* [Bitsy Tutorial](https://www.clairemorleyart.com/a-bitsy-tutorial)
+* [Bitsy FAQ](https://docs.google.com/document/d/1jRz3wgkQU3kZN_LGChw4UlMWhVoc145J-euBtkr7NeE/edit#)
+* [Bitsy Wiki](http://bitsy.wikia.com/wiki/Bitsy_Wiki)
+* [Bitsy Hacks](https://github.com/seleb/bitsy-hacks)
+* [Bitsy Discord](https://discord.gg/NYh43Xr)
