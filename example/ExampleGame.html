@@ -963,7 +963,7 @@ DLG SPR_r
 {shk}Look out!{shk} The end is(endNow "But before the creature could finish... it was over.")
 
 DLG SPR_4
-Showing a simple 'walking on grass' effect.
+Showing a simple 'walking on grass' effect.(p)The 'grass' is an item that gets picked up, revealing the tile beneath it.
 
 DLG SPR_5
 Playing around with variables.(p)Try different combos of talking to the cat, picking up tea, & talking to the teasmith.
@@ -4090,7 +4090,7 @@ function load_game(game_data, startWithTitle) {
 	var dialogFuncs = advancedDialogFuncMgr.dialogFunctions;
 	
 	for (var tag in dialogFuncs) {
-		console.log("~ Converting dialog tags for " + tag)
+		console.log("~ convert dialog: " + tag)
 		game_data = convertDialogTags(game_data, tag);
 	}
 
