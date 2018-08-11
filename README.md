@@ -3,7 +3,7 @@
 
 A modified version of [Adam Le Doux](https://twitter.com/adamledoux)'s [Bitsy Game Maker](https://ledoux.itch.io/bitsy) (v5.1)
 
-Borrowing HEAVILY and offering full credit to [Sean LeBlanc](https://github.com/seleb), @mildmojo, @ducklingsmith, and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
+Borrowing HEAVILY and offering full credit to [Sean LeBlanc](https://github.com/seleb), [mildmojo](https://github.com/mildmojo), [ducklingsmith](https://github.com/ducklingsmith), and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
 
 ## Overview
 
@@ -60,12 +60,12 @@ TIPS:
 ```
 Parameters:
   (for image and imageNow)
-     map:    Type of image (SPR, TIL, or ITM)
+     map:    Type of the images (SPR, TIL, or ITM)
      target: id/name of image to edit
      source: id/name of image to copy
 
   (for imagePal and imagePalNow)
-     map:    Type of image (SPR, TIL, or ITM)
+     map:    Type of the images (SPR, TIL, or ITM)
      target: id/name of image to edit
      source: palette index (0 is bg, 1 is tiles, 2 is sprites/items, 
                            higher requires editing your game data to include more)
@@ -155,3 +155,11 @@ Note that this is not me trying to claim total credit for the code there. I just
 Once again, big thanks to [Sean LeBlanc](https://github.com/seleb), @mildmojo, @ducklingsmith, and the [bitsy hacks page](https://github.com/seleb/bitsy-hacks).
 
 Also, thank you to Von_Bednar and the other lovely folks of the bitsy discord channel for their help <3
+
+## Other Useful Links
+
+[Bitsy Tutorial](https://www.clairemorleyart.com/a-bitsy-tutorial)
+[Bitsy FAQ](https://docs.google.com/document/d/1jRz3wgkQU3kZN_LGChw4UlMWhVoc145J-euBtkr7NeE/edit#)
+[Bitsy Wiki](http://bitsy.wikia.com/wiki/Bitsy_Wiki)
+[Bitsy Hacks](https://github.com/seleb/bitsy-hacks)
+[Bitsy Discord](https://discord.gg/NYh43Xr)

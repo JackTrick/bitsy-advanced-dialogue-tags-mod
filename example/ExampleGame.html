@@ -6,10 +6,10 @@
 
 <meta charset="UTF-8">
 
-<title></title>
+<title>Example Game - Read The Signs {printSprite "editimage-sign"}</title>
 
 <script type="bitsyGameData" id="exportedGameData">
-
+Example Game - Read The Signs {printSprite "editimage-sign"}
 
 # BITSY VERSION 5.1
 
@@ -33,48 +33,48 @@ PAL 1
 ROOM 0
 0,0,0,0,0,0,a,0,0,a,0,0,0,0,0,0
 0,a,a,a,a,a,a,0,0,a,a,a,a,a,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,b,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,b,0,0,0,a,0
+0,a,g,g,g,g,0,0,0,0,0,g,g,g,a,0
+0,a,g,0,0,0,0,0,0,0,0,0,g,g,a,0
+0,a,g,0,0,0,0,0,b,0,0,0,0,g,a,0
+0,a,g,0,0,0,0,0,0,0,b,0,0,0,a,0
 0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
 0,a,0,0,b,0,0,0,0,0,0,0,0,0,a,0
 0,a,0,0,0,0,0,0,0,0,0,b,0,0,a,0
 0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
 0,a,0,0,0,0,b,0,0,0,0,b,0,0,a,0
 0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
+0,a,0,0,0,0,0,g,g,0,0,0,0,0,a,0
+0,a,0,0,0,g,g,g,g,g,0,0,0,0,a,0
 0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-NAME room - start
+NAME room-variables
 ITM 0 7,7
 ITM 0 9,11
 ITM 0 4,9
 ITM 0 11,4
 ITM 0 3,12
-EXT 7,0 1 7,15
-EXT 8,0 1 8,15
-PAL 0
+EXT 7,0 3 7,15
+EXT 8,0 3 8,15
+PAL 1
 
 ROOM 1
-0,0,0,0,0,0,a,0,0,a,0,0,0,0,0,0
-0,a,a,a,a,a,a,0,0,a,a,a,a,a,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
+0,a,g,g,0,0,0,g,g,g,g,0,0,0,a,0
+0,a,g,0,0,0,0,0,g,g,0,0,0,0,a,0
 0,a,0,0,0,b,0,0,0,0,0,b,0,0,a,0
 0,a,0,0,0,0,0,0,b,0,0,0,0,0,a,0
-0,a,0,b,0,0,0,c,c,0,0,0,0,0,a,0
-0,a,0,0,0,0,c,c,c,c,0,0,0,0,a,0
+0,a,0,b,0,0,0,c,c,0,0,0,g,g,a,0
+0,a,0,0,0,0,c,c,c,c,0,0,0,g,a,0
 0,a,0,0,0,b,c,c,c,c,c,0,0,0,a,0
 0,a,0,0,c,c,c,c,c,c,c,0,0,0,a,0
 0,a,0,b,c,c,c,c,c,b,c,0,0,0,a,0
 0,a,0,0,0,c,c,c,c,c,c,b,0,0,a,0
-0,a,0,0,0,b,c,c,c,c,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
+0,a,g,0,0,b,c,c,c,c,0,0,0,g,a,0
+0,a,g,g,0,0,0,0,0,0,0,0,g,g,a,0
 0,a,a,a,a,a,a,0,0,a,a,a,a,a,a,0
 0,0,0,0,0,0,a,0,0,a,0,0,0,0,0,0
-NAME next
+NAME room-grass_steps
 ITM 0 10,7
 ITM 1 8,8
 ITM 1 8,9
@@ -95,39 +95,102 @@ ITM 1 8,7
 ITM 1 7,7
 ITM 1 6,8
 ITM 1 6,10
-EXT 7,15 0 7,0
-EXT 8,15 0 8,0
+EXT 7,15 3 7,0
+EXT 8,15 3 8,0
 END undefined 7,0
 END undefinee 8,0
 PAL 1
 
-ROOM 2
+ROOM 3
+0,0,0,0,0,0,a,0,0,a,0,0,0,0,0,0
+0,a,a,a,a,a,a,0,0,a,a,a,a,a,a,0
+0,a,d,d,d,d,d,0,0,d,d,d,d,0,a,0
+0,a,d,d,d,d,d,0,0,d,d,d,d,d,a,0
+0,a,d,0,0,0,d,0,0,d,0,0,0,d,a,0
+0,a,d,0,0,0,d,0,0,d,0,0,0,d,a,0
+a,a,0,0,0,0,0,0,0,0,0,0,0,d,a,a
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+a,a,0,0,0,0,0,0,0,0,0,0,0,d,a,a
+0,a,d,d,0,0,d,0,0,d,0,0,0,d,a,0
+0,a,d,d,0,g,d,0,0,d,f,e,b,d,a,0
+0,a,d,d,d,d,d,0,0,d,d,d,d,d,a,0
+0,a,d,d,d,d,d,0,0,d,d,d,d,g,a,0
+0,a,a,a,a,a,a,0,0,a,a,a,a,a,a,0
+0,0,0,0,0,0,a,0,0,a,0,0,0,0,0,0
+NAME room-edit_image
+ITM 2 10,4
+ITM 3 11,4
+ITM 4 12,4
+ITM 5 13,2
+ITM 5 4,11
+ITM 0 10,5
+EXT 0,7 4 15,7
+EXT 0,8 4 15,8
+EXT 15,7 5 0,7
+EXT 15,8 5 0,8
+EXT 7,0 1 7,15
+EXT 8,0 1 8,15
+EXT 7,15 0 7,0
+EXT 8,15 0 8,0
+PAL 0
+
+ROOM 4
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,b,b,b,b,b,0,0,0
-0,0,0,b,0,0,b,b,0,0,0,0,b,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,b,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,b,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,b,0,0,0
-0,0,0,b,0,0,0,0,0,0,0,0,b,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,b,0,0,0
-0,0,0,0,0,0,b,0,b,b,b,b,b,0,0,0
+0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
+0,a,0,0,0,0,0,0,0,g,g,g,g,g,a,0
+0,a,0,0,g,g,g,0,0,0,0,g,g,g,a,0
+0,a,0,g,g,g,0,0,0,0,0,0,0,g,a,0
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,a
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,a
+0,a,0,0,0,0,0,0,0,0,0,0,0,0,a,0
+0,a,0,0,0,0,0,g,g,0,0,0,0,0,a,0
+0,a,0,0,0,0,g,g,g,g,0,0,0,0,a,0
+0,a,0,0,0,0,0,g,g,0,0,0,0,0,a,0
+0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+NAME room-exit
+ITM 5 11,4
+ITM 5 5,10
+ITM 5 11,11
+EXT 15,7 3 0,7
+EXT 15,8 3 0,8
+PAL 0
+
+ROOM 5
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
+0,a,0,0,0,0,0,g,g,0,0,0,0,g,a,0
+0,a,0,0,0,0,g,g,g,g,0,0,g,g,a,0
+0,a,0,0,0,0,g,g,g,g,0,0,0,g,a,0
+0,a,0,0,0,0,0,g,g,0,0,0,0,g,a,0
+a,a,0,0,0,0,0,0,0,0,0,0,0,g,a,0
+0,0,0,0,0,0,0,0,0,0,0,g,g,g,a,0
+0,0,0,0,0,0,0,0,0,0,0,0,g,g,a,0
+a,a,0,0,0,0,0,0,0,0,0,0,0,g,a,0
+0,a,0,0,g,g,0,0,0,0,0,g,g,g,a,0
+0,a,0,g,g,g,g,0,0,0,0,0,g,g,a,0
+0,a,0,g,g,g,g,0,0,0,0,0,0,g,a,0
+0,a,0,0,g,g,0,0,0,0,0,0,0,0,a,0
+0,a,a,a,a,a,a,a,a,a,a,a,a,a,a,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-NAME test
+NAME room-endgame
+ITM 5 10,12
+ITM 5 4,3
+EXT 0,7 3 15,7
+EXT 0,8 3 15,8
 PAL 0
 
 TIL a
 00111100
 01111110
-11000010
+11000011
 11011011
 11011011
-11000010
+11000011
 01111110
 00111100
 NAME base tile
@@ -166,25 +229,186 @@ TIL c
 00000000
 NAME footsteps
 
-SPR A
-00111100
+TIL d
+00000000
 01111110
-01011010
-00111100
+01111110
+01111110
+01111110
+01111110
+01111110
+00000000
+
+TIL e
+00000000
+00000000
 01100110
+01000100
+00001000
+00011000
+01000010
 00111100
-00011000
-00011000
+NAME creep
+
+TIL f
+00000000
+00001100
+01100110
+00110000
+00000110
+11000011
+01101100
+00000110
 >
-00111100
-01111110
-01011010
-00111100
+00001100
 01100110
+00110000
+00000110
+11000011
+01101100
+00000110
+00000000
+NAME snow
+
+TIL g
+00000000
+00011000
+00100100
+01000010
+01000010
 00100100
 00011000
+00000000
+NAME tilebase
+
+SPR 10
+00000000
+00111110
+00100010
+00111110
+00001000
+00001000
+00000000
+00000000
+NAME end-sign
+DLG SPR_p
+POS 5 3,8
+
+SPR 11
+01000010
+01111110
+11111111
+11011011
+10111101
+11100111
+01111110
+00100100
+>
+01000010
+01111110
+11111111
+10011001
+10111101
+11100111
+01111110
+00100100
+NAME endnow-char
+DLG SPR_r
+POS 5 11,5
+
+SPR 12
+00000000
+00111100
+01111110
+01011010
+10111101
+11100111
+01111110
+00100100
+>
+00000000
+00111100
+01111110
+01011010
+10011001
+11100111
+01111110
+00100100
+NAME end-char
+DLG SPR_q
+POS 5 8,9
+
+SPR 13
+00000000
+00000000
+01111100
+01000100
+01111100
+00010000
+00010000
+00000000
+NAME grass-sign
+DLG SPR_4
+POS 1 9,13
+
+SPR 14
+00000000
+00000000
+01111100
+01000100
+01111100
+00010000
+00010000
+00000000
+NAME vars-sign
+DLG SPR_5
+POS 0 6,2
+
+SPR 15
+00000000
+00000000
+00111000
+00111000
+00010000
+00010000
+00000000
+00000000
+NAME sign-palette
+DLG SPR_6
+POS 1 5,13
+
+SPR 16
+00000000
+00000000
+00111000
+00111000
+00010000
+00010000
+00000000
+00000000
+NAME sign-anim
+DLG SPR_s
+POS 0 10,2
+
+SPR A
+00001000
+00111100
+00100100
 00011000
-POS 0 3,3
+01111100
+01011010
+00011010
+00011000
+>
+00010000
+00111100
+00100100
+00011000
+00111110
+01011010
+01011000
+00011000
+POS 3 7,8
 
 SPR a
 00000000
@@ -219,7 +443,7 @@ SPR b
 00011100
 NAME skull
 DLG SPR_1
-POS 0 12,12
+POS 1 6,3
 
 SPR c
 00111000
@@ -259,7 +483,7 @@ SPR c
 10101010
 NAME teasmith
 DLG SPR_2
-POS 0 9,2
+POS 0 4,4
 
 SPR d
 00000000
@@ -274,69 +498,271 @@ NAME empty cup
 DLG SPR_3
 POS 1 10,7
 
-SPR e
+SPR j
+00000000
+00011000
+00100100
+00100101
+01111110
+10111100
+00111100
+01111110
+>
+00000000
+00011000
+00100100
+10100100
+01111110
+00111101
+00111100
+01111110
+NAME dancer
+DLG SPR_g
+POS 3 4,4
+
+SPR k
+00000000
+00111100
+00100100
+00111100
+01111110
+10111101
+00100100
+00100100
+>
+00000000
+00111100
+00100100
+00111100
+11111111
+00111100
+00100100
+00100100
+NAME cheerer
+DLG SPR_f
+POS 3 3,4
+
+SPR l
 00000000
 00000000
-00000001
-10100001
-11100010
-11111110
+00000000
+00011100
+00101010
+01111110
+00110000
+00000000
+>
+00000000
+00000000
+00000000
+00011100
+00101010
+01111110
+00011100
+00000000
+NAME thegleeber
+DLG SPR_h
+POS 3 5,4
+
+SPR m
+00000000
+00000000
+00000000
+00111100
+00100100
+00111100
+00000000
+00000000
+NAME change-cookie
+DLG SPR_7
+POS 3 10,5
+
+SPR n
+00000000
+00000000
+00000000
+00111100
+00100100
+00111100
+00000000
+00000000
+NAME change-key
+DLG SPR_8
+POS 3 11,5
+
+SPR o
+00000000
+00000000
+00000000
+00111100
+00100100
+00111100
+00000000
+00000000
+NAME change-flower
+DLG SPR_9
+POS 3 12,5
+
+SPR p
+00000000
+00000000
+00000000
+00111100
+01100110
+00111100
+00000000
+00000000
+NAME change-creep
+DLG SPR_b
+POS 3 11,10
+
+SPR q
+00000000
+00000000
+00000000
+00111100
+01100110
+00111100
+00000000
+00000000
+NAME change-tree
+DLG SPR_c
+POS 3 12,10
+
+SPR r
+00000000
+00000000
+00000000
+00111100
+01100110
+00111100
+00000000
+00000000
+NAME change-snow
+DLG SPR_a
+POS 3 10,10
+
+SPR s
+00000000
+00000000
+00011000
+00111100
+00100100
+00111100
+00000000
+00000000
+NAME change-pal1
+DLG SPR_e
+POS 3 4,10
+
+SPR t
+00000000
+00000000
+00011000
+00111100
+00100100
+00111100
+00000000
+00000000
+NAME change-pal1
+DLG SPR_d
+POS 3 5,10
+
+SPR u
+00000000
+00010000
 01111100
 01000100
->
-00000000
-00000000
-00000100
-10100100
-11100010
-11111110
 01111100
-00101000
-NAME follow cat
-POS 1 7,14
+00010000
+00010000
+00000000
+NAME editimage-sign
+DLG SPR_i
+POS 3 6,6
 
-SPR f
-00000000
-00011000
-00100100
-01000010
-01000010
-00100100
-00011000
-00000000
->
+SPR v
 00000000
 00000000
-00011000
-00100100
-00100100
-00011000
-00000000
-00000000
-NAME portal
-DLG SPR_4
-POS 0 3,6
-
-SPR g
-01011100
-11001000
-11011100
-01001000
-01111110
-01011101
-00010101
-00010100
->
 00011100
-01001000
-11011101
-11001001
+00011100
+00001000
+00001000
+00000000
+00000000
+NAME tip-br_p
+DLG SPR_j
+POS 3 3,8
+
+SPR w
+00000000
+00000000
+00000000
+00111000
+00111000
+00010000
+00010000
+00000000
+NAME tip-altclick
+DLG SPR_k
+POS 3 10,8
+
+SPR x
+00000000
+00000000
+00111110
+00100010
+00111110
+00001000
+00001000
+00000000
+NAME exit-sign
+DLG SPR_m
+POS 4 12,8
+
+SPR y
+01000010
 01111110
-01011100
-01010100
-00010100
-NAME spritechange
-POS 0 5,6
+11011011
+11011011
+01111110
+01000010
+01111110
+00100100
+>
+01000010
+01111110
+11011011
+11011011
+01111110
+01100110
+01111110
+00100100
+NAME exitnow-char
+DLG SPR_o
+POS 4 4,6
+
+SPR z
+00000000
+00111100
+01011010
+01011010
+01111110
+01000010
+01111110
+00100100
+>
+00000000
+00111100
+01011010
+01011010
+01111110
+01100110
+01111110
+00100100
+NAME exit-char
+DLG SPR_n
+POS 4 8,8
 
 ITM 0
 00000000
@@ -368,6 +794,51 @@ ITM 1
 01000110
 01001010
 00001000
+NAME grass
+
+ITM 2
+00000000
+00000000
+00000000
+00111100
+01101010
+01010110
+00111100
+00000000
+NAME cookie
+
+ITM 3
+00000000
+00000000
+00000000
+01110000
+01011111
+01110101
+00000000
+00000000
+NAME key
+
+ITM 4
+00000000
+01010100
+00111000
+00101000
+01010100
+00010000
+00010000
+00000000
+NAME flower
+
+ITM 5
+00000000
+00000000
+00000000
+01100110
+00111100
+01100110
+00000000
+00000000
+NAME bone
 
 DLG SPR_0
 """
@@ -428,8 +899,80 @@ DLG SPR_3
 }
 """
 
+DLG SPR_7
+Changing "bone" item image to "cookie!"(image "ITM, bone, cookie") ({printItem "bone"} -> {printItem "cookie"})
+
+DLG SPR_8
+Changing "bone" item image to "key!"(image "ITM, bone, key") ({printItem "bone"} -> {printItem "key"})
+
+DLG SPR_9
+Changing "bone" item image to "flower" RIGHT NOW! ({printItem "bone"} -> {printItem "flower"})(imageNow "ITM, bone, flower")
+
+DLG SPR_a
+Changing "tilebase" tile image to "snow!"(image "TIL, tilebase, snow") ({printTile "tilebase"} -> {printTile "snow"})
+
+DLG SPR_b
+Changing "tilebase" tile image to "creep" RIGHT NOW! ({printTile "tilebase"} -> {printTile "creep"})(imageNow "TIL, tilebase, creep")
+
+DLG SPR_c
+Changing "tilebase" tile image to "tree!"(image "TIL, tilebase, tree") ({printTile "tilebase"} -> {printTile "tree"})
+
+DLG SPR_e
+Changing avatar palette to 2 (sprites/items, pink) (imagePal "SPR, A, 2")
+
+DLG SPR_f
+Changing avatar to me! ({printSprite "A"} -> {printSprite "cheerer"})(image "SPR, A, cheerer")
+
+DLG SPR_g
+Changing avatar to me! ({printSprite "A"} -> {printSprite "dancer"})(image "SPR, A, dancer")
+
+DLG SPR_h
+Changing avatar to me RIGHT NOW! ({printSprite "A"} -> {printSprite "thegleeber"})(imageNow "SPR, A, thegleeber")
+
+DLG SPR_d
+Changing avatar palette to 1 (tiles, blue) RIGHT NOW! (imagePalNow "SPR, A, 1")
+
+DLG SPR_i
+edit-image-from-dialog room(p)Upper Left - Change Avatar Image(p)Lower Left - Change Avatar Palette(p)Upper Right - Change Item Item(p)Lower Right - Change Tile Image
+
+DLG SPR_j
+In dialogs, you can use the "br" function to go to the next line like{br}this(p)And the "p" function to go to a new dialog window(p)like(p)this!
+
+DLG SPR_k
+In the editor, you can Alt+LeftClick a tile to select it in the Paint & Find Drawing windows.
+
+DLG SPR_l
+In the editor, you can Alt-Tap a tile to select it in the Paint
+
+DLG SPR_m
+exit-from-dialog room(p){printSprite "exit-char"} will exit you to the previous room after you talk(p){printSprite "exitnow-char"} will exit you to the previous room IMMEDIATELY.
+
+DLG SPR_n
+Get ready to {wvy}teleport{wvy}!(exit "room-edit_image, 4, 7")
+
+DLG SPR_o
+BOOM!(exitNow "room-edit_image, 4, 7") You just got {wvy}teleported!{wvy}
+
+DLG SPR_p
+end-from-dialog room(p){printSprite "end-char"} will end the game after you talk(p){printSprite "endnow-char"} will end the game IMMEDIATELY.
+
+DLG SPR_q
+The end is {shk}coming!{shk}(end "The creature was right. The end came.")
+
+DLG SPR_r
+{shk}Look out!{shk} The end is(endNow "But before the creature could finish... it was over.")
+
 DLG SPR_4
-Hi {printSprite "skull" "skull"}!{exit "next,2,2"}
+Showing a simple 'walking on grass' effect.
+
+DLG SPR_5
+Playing around with variables.(p)Try different combos of talking to the cat, picking up tea, & talking to the teasmith.
+
+DLG SPR_6
+It's possible to get more than 3 colors in a palette.(p)Check the Bitsy FAQ!
+
+DLG SPR_s
+It's possible to get more than 2 frames of animation.(p)Check the Bitsy FAQ!
 
 END 0
 
@@ -996,115 +1539,6 @@ function deprecatedFunc(environment,parameters,onReturn) {
 	onReturn(null);
 }
 
-function exitRoomNowFunc(environment,parameters,onReturn) {
-	 console.log("EXIT ROOM NOW FUNC ~");
-	 console.log("~ " + parameters);
-	 if(parameters[0] != undefined && parameters[0] != null){
-	 	console.log("~ " + parameters[0]);
-	 }
-	 if(parameters[1] != undefined && parameters[1] != null){
-	 	console.log("~~ " + parameters[1]);
-	 }
-	 
-	var exitParams = _getExitParams('exitNow', parameters);
-	if (!exitParams) {
-		console.log("~ exit params not found");
-		return;
-	}
-
-	doPlayerExit(exitParams);
-	onReturn(null);
-
-	 /*
-	if( parameters[0] != undefined && parameters[0] != null ) {
-		// console.log(parameters[0]);
-		// console.log(parameters[0].toString());
-		// var textStr = parameters[0].toString();
-		var textStr = "" + parameters[0];
-		// console.log(textStr);
-		var onFinishHandler = function() {
-			// console.log("FINISHED PRINTING ---- SCRIPT");
-			onReturn(null);
-		}; // called when dialog is finished printing
-		environment.GetDialogBuffer().AddText( textStr, onFinishHandler );
-	}
-	else {
-		onReturn(null);
-	}
-	*/
-}
-
-function _getExitParams(exitFuncName, parameters) {
-	console.log("~ fetching exit params");
-	var params = parameters[0].split(',');
-	var roomName = params[0];
-	var x = params[1];
-	var y = params[2];
-	var coordsType = (params[3] || 'exit').toLowerCase();
-	var useSpriteCoords = coordsType === 'sprite';
-	console.log("~ room name of " + roomName);
-
-	var roomId = getRoom(roomName).id;
-	console.log("~ room id of " + roomId);
-
-	if (!roomName || x === undefined || y === undefined) {
-		console.warn('~ {' + exitFuncName + '} was missing parameters! Usage: {' +
-			exitFuncName + ' "roomname,x,y"}');
-		return null;
-	}
-
-	if (roomId === undefined) {
-		console.warn("~ Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
-		return null;
-	}
-	console.log("~ returning");
-	return {
-		room: roomId,
-		x: Number(x),
-		y: useSpriteCoords ? 15 - Number(y) : Number(y)
-	};
-}
-
-/**
- * Helper for getting room by name or id
- * @param {string} name id or name of room to return
- * @return {string} room, or undefined if it doesn't exist
- */
-function getRoom(name) {
-	console.log("~ getRoom: " + name)
-	var id = room.hasOwnProperty(name) ? name : names.room.get(name);
-	return room[id];
-}
-
-
-// dest === {room: Room, x: Int, y: Int}
-function doPlayerExit(dest) {
-	console.log("~ doing player exit to " + dest.room);
-	player().room = dest.room;
-	player().x = dest.x;
-	player().y = dest.y;
-	curRoom = dest.room;
-}
-
-function exitRoomFunc(environment,parameters,onReturn) {
-	 console.log("EXIT ROOM FUNC ~");
-	 console.log("~ " + parameters);
-	 if(parameters[0] != undefined && parameters[0] != null){
-	 	console.log("~ " + parameters[0]);
-	 }
-	 if(parameters[1] != undefined && parameters[1] != null){
-	 	console.log("~~ " + parameters[1]);
-	 }
-	 
-	var exitParams = _getExitParams('exitNow', parameters);
-	if (!exitParams) {
-		console.log("~ exit params not found");
-		return;
-	}
-
-	doPlayerExit(exitParams);
-}
-
 function printFunc(environment,parameters,onReturn) {
 	// console.log("PRINT FUNC");
 	// console.log(parameters);
@@ -1205,6 +1639,255 @@ function shakyFunc(environment,parameters,onReturn) {
 	onReturn(null);
 }
 
+/**
+* BEGIN ADDED FUNCS FOR bitsy-advanced-dialogue-tags -jacktrick
+**/
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exitNow} dialog function. It exits to the destination room
+// and X/Y coordinates right damn now.
+function exitRoomNowFunc(environment,parameters,onReturn) {
+	var exitParams = _getExitParams('exitNow', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+	onReturn(null);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exit} dialog function. It saves the room name and
+// destination X/Y coordinates so we can travel there after the dialog is over.
+function exitRoomFunc(environment,parameters,onReturn) {	 
+	var exitParams = _getExitParams('exit', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// fetches the exit parameters used for the exitRoomFunc and exitRoomNowFunc
+function _getExitParams(exitFuncName, parameters) {
+	var params = parameters[0].split(',');
+	var roomName = params[0];
+	var x = params[1];
+	var y = params[2];
+	var coordsType = (params[3] || 'exit').toLowerCase();
+	var useSpriteCoords = coordsType === 'sprite';
+	
+	var roomId = getRoom(roomName).id;
+	
+	if (!roomName || x === undefined || y === undefined) {
+		console.warn(' {' + exitFuncName + '} was missing parameters! Usage: {' +
+			exitFuncName + ' "roomname,x,y"}');
+		return null;
+	}
+
+	if (roomId === undefined) {
+		console.warn(" Bad {" + exitFuncName + "} parameter: Room '" + roomName + "' not found!");
+		return null;
+	}
+	return {
+		room: roomId,
+		x: Number(x),
+		y: useSpriteCoords ? 15 - Number(y) : Number(y)
+	};
+}
+
+/**
+ * bitsy-advanced-dialogue-tags -jacktrick* 
+ * Helper for getting room by name or id
+ * @param {string} name id or name of room to return
+ * @return {string} room, or undefined if it doesn't exist
+ */
+function getRoom(name) {
+	var id = room.hasOwnProperty(name) ? name : names.room.get(name);
+	return room[id];
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// dest === {room: Room, x: Int, y: Int}
+function doPlayerExit(dest) {
+	player().room = dest.room;
+	player().x = dest.x;
+	player().y = dest.y;
+	curRoom = dest.room;
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+//The actual function. Makes use of the existing AddLinebreak function within
+//the dialogue parser to automatically add an appropriate number of line breaks
+//based on the current dialogue buffer size rather than the user having to count
+// @author Sean S. LeBlanc, David Mowatt
+function paragraphbreakFunc(environment, parameters, onReturn) {
+    var a = environment.GetDialogBuffer().CurRowCount();
+    for (var i = 0; i < 3 - a; ++i) {
+        environment.GetDialogBuffer().AddLinebreak();
+    }
+    onReturn(null);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {endNow} dialog function. It starts ending narration, if any,
+// and restarts the game right damn now.
+function endGameNowFunc(environment,parameters,onReturn) {
+	onReturn(null);
+	startNarrating(parameters[0] || null, true);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {end} dialog function. It schedules the game to end after the current dialog finishes.
+function endGameFunc(environment,parameters,onReturn) {	 
+	startNarrating(parameters[0] || null, true);
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Helper for getting image by name or id
+Args:
+	name: id or name of image to return
+	 map: map of images (e.g. `sprite`, `tile`, `item`)
+Returns: the image in the given map with the given name/id
+ */
+function getImage(name, map) {
+	var id = map.hasOwnProperty(name) ? name : Object.keys(map).find(function (e) {
+		return map[e].name == name;
+	});
+	return map[id];
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Args:
+	   id: string id or name
+	frame: animation frame (0 or 1)
+	  map: map of images (e.g. `sprite`, `tile`, `item`)
+Returns: a single frame of a image data
+*/
+function getImageData(id, frame, map) {
+	return imageStore.source[getImage(id, map).drw][frame];
+}
+
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+/*
+Updates a single frame of image data
+Args:
+	     id: string id or name
+	  frame: animation frame (0 or 1)
+	    map: map of images (e.g. `sprite`, `tile`, `item`)
+	newData: new data to write to the image data
+*/
+function setImageData(id, frame, map, newData) {
+	var drawing = getImage(id, map);
+	var drw = drawing.drw;
+	imageStore.source[drw][frame] = newData;
+	if (drawing.animation.isAnimated) {
+		drw += "_" + frame;
+	}
+	for (var pal in palette) {
+		if (palette.hasOwnProperty(pal)) {
+			var col = drawing.col;
+			var colStr = "" + col;
+			imageStore.render[pal][colStr][drw] = imageDataFromImageSource(newData, pal, col);
+		}
+	}
+}
+
+
+// bitsy-advanced-dialogue-tags -jacktrick
+function editImage(environment, parameters, onReturn) {
+  var i;
+
+  // parse parameters
+  var params = parameters[0].split(/,\s?/);
+  params[0] = (params[0] || "").toLowerCase();
+  var mapId = params[0];
+  var tgtId = params[1];
+  var srcId = params[2];
+
+  if (!mapId || !tgtId || !srcId) {
+    throw new Error('Image expects three parameters: "map, target, source", but received: "' + params.join(', ') + '"');
+  }
+
+  // get objects
+  var mapObj = maps[mapId];
+  if (!mapObj) {
+    throw new Error('Invalid map "' + mapId + '". Try "SPR", "TIL", or "ITM" instead.');
+  }
+  var tgtObj = getImage(tgtId, mapObj);
+  if (!tgtObj) {
+    throw new Error('Target "' + tgtId + '" was not the id/name of a ' + mapId + '.');
+  }
+  var srcObj = getImage(srcId, mapObj);
+  if (!srcObj) {
+    throw new Error('Source "' + srcId + '" was not the id/name of a ' + mapId + '.');
+  }
+
+  // copy animation from target to source
+  tgtObj.animation = {
+    frameCount: srcObj.animation.frameCount,
+    isAnimated: srcObj.animation.isAnimated,
+    frameIndex: srcObj.animation.frameIndex
+  };
+  for (i = 0; i < srcObj.animation.frameCount; ++i) {
+    setImageData(tgtId, i, mapObj, getImageData(srcId, i, mapObj));
+  }
+
+  // done
+  if (onReturn) {
+    onReturn(null);
+  }
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+function editPalette(environment, parameters, onReturn) {
+  // parse parameters
+  var params = parameters[0].split(/,\s?/);
+  params[0] = (params[0] || "").toLowerCase();
+  var mapId = params[0];
+  var tgtId = params[1];
+  var palId = params[2];
+
+  if (!mapId || !tgtId || !palId) {
+    throw new Error('Image expects three parameters: "map, target, palette", but received: "' + params.join(', ') + '"');
+  }
+
+  // get objects
+  var mapObj = maps[mapId];
+  if (!mapObj) {
+    throw new Error('Invalid map "' + mapId + '". Try "SPR", "TIL", or "ITM" instead.');
+  }
+  var tgtObj = getImage(tgtId, mapObj);
+  if (!tgtObj) {
+    throw new Error('Target "' + tgtId + '" was not the id/name of a ' + mapId + '.');
+  }
+  var palObj = parseInt(palId);
+  if (isNaN(palObj)) {
+    throw new Error('Palette "' + palId + '" was not a number.');
+  }
+
+  // set palette
+  tgtObj.col = palObj;
+
+  // update images in cache
+  renderImageForAllPalettes(tgtObj);
+	
+
+  // done
+  if (onReturn) {
+    onReturn(null);
+  }
+}
+
+/**
+* END ADDED FUNCS FOR bitsy-advanced-dialogue-tags -jacktrick
+**/
+
+
 /* BUILT-IN OPERATORS */
 function setExp(environment,left,right,onReturn) {
 	// console.log("SET " + left.name);
@@ -1290,19 +1973,75 @@ function subExp(environment,left,right,onReturn) {
 	});
 }
 
-/* HACK */
-function addDialogTag(tag, fn) {
-	addDialogFunction(tag, fn);
-	inject$1(
-		/(var functionMap = new Map\(\);)/,
-		'$1functionMap.set("' + tag + '", kitsy.dialogFunctions.' + tag + ');'
-	);
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ * 
+ * Function is executed immediately when the tag is reached.
+ *
+ * @param {Map}      functionMap Function Map from the Environment
+ * @param {string}           tag Name of tag
+ * @param {Function}         fn  Function to execute, with signature `function(environment, parameters, onReturn){}`
+ *                               environment: provides access to SetVariable/GetVariable (among other things, see Environment in the bitsy source for more info)
+ *                               parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ *                               onReturn: function to call with return value (just call `onReturn(null);` at the end of your function if your tag doesn't interact with the logic system)
+ */
+function addDialogTag(functionMap, tag, fn)
+{
+	advancedDialogFuncMgr.dialogFunctions[tag] = fn;
+	functionMap.set(tag, fn);
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ * 
+ * Function is executed after the dialog box.
+ *
+ * @param {Map}      functionMap Function Map from the Environment
+ * @param {string}   tag         Name of tag
+ * @param {Function} fn          Function to execute, with signature `function(environment, parameters){}`
+ *                               environment: provides access to SetVariable/GetVariable (among other things, 
+ *                               see Environment in the bitsy source for more info)
+ *                               parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ */
+function addDeferredDialogTag(functionMap, tag, fn)
+{
+	advancedDialogFuncMgr.dialogFunctions[tag] = fn;
+	advancedDialogFuncMgr.deferredDialogFunctions[tag] = [];
+	functionMap.set(tag, 
+		function(e, p, o){ 
+			advancedDialogFuncMgr.deferredDialogFunctions[tag].push({e:e,p:p}); o(null);
+		});
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+/**
+* Helper method that is passed the functionMap from Environment
+* here is where all the new advanced dialogue tags are added
+*/
+function defineAdvancedDialogTags(functionMap){
+	addDialogTag(functionMap, "exitNow", exitRoomNowFunc);
+	addDeferredDialogTag(functionMap, "exit", exitRoomFunc);
+
+	addDialogTag(functionMap, "p", paragraphbreakFunc);
+
+	addDialogTag(functionMap, "endNow", endGameNowFunc);
+	addDeferredDialogTag(functionMap, "end", endGameFunc);
+
+	addDeferredDialogTag(functionMap, "image", editImage);
+	addDialogTag(functionMap, "imageNow", editImage);
+
+	addDeferredDialogTag(functionMap, "imagePal", editPalette);
+	addDialogTag(functionMap, "imagePalNow", editPalette);	
+}
 
 /* ENVIRONMENT */
 var Environment = function() {
-	console.log("~ defining environment")
 	var dialogBuffer = null;
 	this.SetDialogBuffer = function(buffer) { dialogBuffer = buffer; };
 	this.GetDialogBuffer = function() { return dialogBuffer; };
@@ -1322,23 +2061,8 @@ var Environment = function() {
 	functionMap.set("printTile", printTileFunc);
 	functionMap.set("printItem", printItemFunc);
 
-	functionMap.set("exitNow", exitRoomNowFunc)
-
-	kitsy = kitsyInit();
-	kitsy.dialogFunctions = {};
-	kitsy.dialogFunctions["exit"] = exitRoomFunc;
-	console.log("~ exit func: " + kitsy.dialogFunctions["exit"]);
-
-	kitsy.deferredDialogFunctions || {};
-	var deferred = kitsy.deferredDialogFunctions["exit"] = [];
-	functionMap.set("exit", 
-		function(e, p, o){ 
-			console.log("~ exit func setting deferred");
-			kitsy.deferredDialogFunctions["exit"].push({e:e,p:p}); o(null);
-		});
-
-
-	//functionMap.set("exit", exitRoomFunc)
+	// bitsy-advanced-dialogue-tags -jacktrick
+	defineAdvancedDialogTags(functionMap);
 
 	this.HasFunction = function(name) { return functionMap.has(name); };
 	this.EvalFunction = function(name,parameters,onReturn) {
@@ -3160,26 +3884,53 @@ var names = {
 	/*ending : new Map()*/ // TODO
 };
 
-// HACK
-var kitsy = kitsyInit();
+/**
+@file bitsy-advanced-dialogue-tags
+@author jacktrick
 
+Modified from Bitsy 5.1
 
-function kitsyInit()
-{
-	if(kitsy){
-		return kitsy;
-	}
+================
 
-	kitsy = {
-		deferredDialogFunctions: {},
-		queuedInjectScripts: [],
-		queuedBeforeScripts: {},
-		queuedAfterScripts: {}
-	};
+Pretty much all credit for this goes to Sean S. LeBlanc and @mildmojo for the original hacks:
+https://github.com/seleb/bitsy-hacks
 
-	return kitsy;
-}
+@summary adding extended dialogue tag functionality to the bitsy editor. This includes:
+exit-from-dialogue       - https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js
+end-from-dialogue        - https://github.com/seleb/bitsy-hacks/blob/master/dist/end-from-dialog.js
+edit-image-from-dialogue - https://github.com/seleb/bitsy-hacks/blob/master/dist/edit%20image%20from%20dialog.js
+paragraph-break-hack     - https://github.com/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js
 
+================
+
+My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a
+developer add them to the html post-export and letting kitsy inject them where appropriate.
+
+I figured the dialogue tags were relatively safe to add to the bitsy maker, as the tags
+could just exist 'under the hood' unless someone actually wanted to use them.
+
+If I've stepped on anyone's toes (particularly Adam Le Doux), do let me know.
+Bitsy is a marvelous thing, and ultimately I just want to be helpful to its community <3
+
+================
+
+I chose to separate from kitsy, as what I mostly use is just dialogFunctions and deferredDialogFunctions.
+
+Parts of the code I changed can be found accompanied by a comment of:
+	// bitsy-advanced-dialogue-tags -jacktrick
+	Note that this is not me trying to claim total credit for the code there 
+	(again, that goes to Adam, Sean, and @mildmojo). 
+	I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
+*/
+
+// bitsy-advanced-dialogue-tags -jacktrick
+var advancedDialogFuncMgr = {
+	dialogFunctions: {},
+	deferredDialogFunctions: {}
+};
+
+// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+var maps;
 
 function updateNamesFromCurData() {
 	names.room = new Map();
@@ -3264,10 +4015,17 @@ function clearGameData() {
 
 	fontName = defaultFontName; // TODO : reset font manager too?
 
-	// HACK
-	console.log("~ deferred reset");
-	var deferred = kitsy.deferredDialogFunctions["exit"];
-	deferred.length = 0;
+	// bitsy-advanced-dialogue-tags -jacktrick
+	// Hook into the game reset and make sure data gets cleared
+	var deferredFuncs = advancedDialogFuncMgr.deferredDialogFunctions;
+	var deferred = 0;
+
+	for (var tag in deferredFuncs) {
+	    if (deferredFuncs.hasOwnProperty(tag)) {
+	        deferred = deferredFuncs[tag];
+	        deferred.length = 0;
+	    }
+	}
 }
 
 var width = 128;
@@ -3327,6 +4085,16 @@ function attachCanvas(c) {
 
 var curGameData = null;
 function load_game(game_data, startWithTitle) {
+	
+	// bitsy-advanced-dialogue-tags -jacktrick
+	var dialogFuncs = advancedDialogFuncMgr.dialogFunctions;
+	
+	for (var tag in dialogFuncs) {
+		console.log("~ Converting dialog tags for " + tag)
+		game_data = convertDialogTags(game_data, tag);
+	}
+
+
 	curGameData = game_data; //remember the current game (used to reset the game)
 
 	dialogBuffer.Reset();
@@ -3349,12 +4117,35 @@ function load_game(game_data, startWithTitle) {
 	// setInterval(updateLoadingScreen, 300); // hack test
 
 	onready(startWithTitle);
+
+	// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
+	maps = {
+	    spr: sprite,
+	    sprite: sprite,
+	    til: tile,
+	    tile: tile,
+	    itm: item,
+	    item: item,
+	};
+}
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Rewrite custom functions' parentheses to curly braces for Bitsy's
+// interpreter. Unescape escaped parentheticals, too.
+function convertDialogTags(input, tag) {
+	return input
+		.replace(new RegExp('\\\\?\\((' + tag + '(\\s+(".+?"|.+?))?)\\\\?\\)', 'g'), function(match, group){
+			if(match.substr(0,1) === '\\') {
+				return '('+ group + ')'; // Rewrite \(tag "..."|...\) to (tag "..."|...)
+			}
+			return '{'+ group + '}'; // Rewrite (tag "..."|...) to {tag "..."|...}
+		});
 }
 
 function reset_cur_game() {
 	if (curGameData == null) return; //can't reset if we don't have the game data
 	stopGame();
-	clearGameData();
+	clearGameData();	
 	load_game(curGameData);
 }
 
@@ -5182,6 +5973,7 @@ function getTileImage(t,palId,frameIndex) {
 			drwId += "_" + t.animation.frameIndex;
 		}
 	}
+	
 	return imageStore.render[ palId ][ t.col ][ drwId ];
 }
 
@@ -5259,7 +6051,6 @@ var fontManager = new FontManager();
 function onExitDialog() {
 	// var breakShit = null;
 	// breakShit();
-	console.log("EXIT DIALOG");
 	isDialogMode = false;
 	if (isNarrating) isNarrating = false;
 	if (isDialogPreview) {
@@ -5268,16 +6059,21 @@ function onExitDialog() {
 			onDialogPreviewEnd();
 	}
 
-	// HACK
-	var deferred = kitsy.deferredDialogFunctions["exit"];
-	console.log("~ deferred: " + deferred.length)
-	while(deferred.length)
-	{
-		var args = deferred.shift();
-		console.log("~ deferred: " + args.e + " " + args.p + " " + args.o)
-		console.log("~+ " + kitsy.dialogFunctions)
-		console.log("~++ " + kitsy.dialogFunctions["exit"])
-		kitsy.dialogFunctions["exit"](args.e, args.p, args.o);
+	// bitsy-advanced-dialogue-tags -jacktrick
+	// Hook into the dialog finish event and execute the actual function
+	var deferredFuncs = advancedDialogFuncMgr.deferredDialogFunctions;
+	var deferred = 0;
+	
+	for (var tag in deferredFuncs) {
+	    if (deferredFuncs.hasOwnProperty(tag)) {
+	        deferred = deferredFuncs[tag];
+
+	        while(deferred.length)
+	        {
+				var args = deferred.shift();
+				advancedDialogFuncMgr.dialogFunctions[tag](args.e, args.p, args.o);
+	        }
+	    }
 	}
 }
 

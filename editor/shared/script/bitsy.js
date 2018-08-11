@@ -231,7 +231,6 @@ var curGameData = null;
 function load_game(game_data, startWithTitle) {
 	
 	// bitsy-advanced-dialogue-tags -jacktrick
-	convertDialogTags(game_data, )
 	var dialogFuncs = advancedDialogFuncMgr.dialogFunctions;
 	
 	for (var tag in dialogFuncs) {
@@ -278,7 +277,7 @@ function load_game(game_data, startWithTitle) {
 // interpreter. Unescape escaped parentheticals, too.
 function convertDialogTags(input, tag) {
 	return input
-		.replace(new RegExp('\\\\?\\((' + tag + '\\s+(".+?"|.+?))\\\\?\\)', 'g'), function(match, group){
+		.replace(new RegExp('\\\\?\\((' + tag + '(\\s+(".+?"|.+?))?)\\\\?\\)', 'g'), function(match, group){
 			if(match.substr(0,1) === '\\') {
 				return '('+ group + ')'; // Rewrite \(tag "..."|...\) to (tag "..."|...)
 			}
