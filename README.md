@@ -26,6 +26,11 @@ NOTE: THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMME
 EXPORTED GAMES SHOULD STILL RUN IN ANY BROWSER
 ```
 
+## Example File
+An example level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
+
+You can also play the level [here](https://jacktrick.itch.io/bitsy-advanced-dialog-tag-mods-example).
+
 ### Warning
 
 I tried to be fairly limited with my changes to avoid the possibility of bugs that could leave your bitsy game file in a bad state. I'm *pretty* sure you should be fine, but use at your own risk and save a backup copy.
@@ -131,9 +136,6 @@ Usage: (p)
        
 Example: I am a cat(p)and my dialogue contains multitudes
 ```
-
-## Example File
-An example level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
 
 ## Additional Information
 
