@@ -14,7 +14,7 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * :door: [exit-from-dialog](https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js): exit to another room from dialog, including conditionals
 * :page_with_curl: [paragraph-break](https://github.com/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js): Adds paragraph breaks to the dialogue parser
 * :rainbow: edit-current-room-palette: edit the current room's palette index
-* :alarm_clock: dialog-hack-timer: adds a set of functions that are variants of the above hacks with a timer that determines when they execute
+* :alarm_clock: timer-variant-dialog-hacks: adds a set of functions that are variants of the above hacks with a timer that determines when they execute
 
 ### How To Use
 
@@ -115,7 +115,7 @@ Use it to make an invisible sprite that acts as a conditional exit, use it to wa
 
 Using the (exit) function in any part of a series of dialog will make the game exit to the new room after the dialog is finished. 
 
-Using (exitNow) will immediately warp to the new room, but the current dialog will continue
+Using (exitNow) will immediately warp to the new room, but the current dialog will continue.
 
 ```
 WARNING: In exit coordinates, the TOP LEFT tile is (0,0). In sprite coordinates,
@@ -138,6 +138,25 @@ Usage: (p)
        
 Example: I am a cat(p)and my dialogue contains multitudes
 ```
+
+### Edit Current Room Palette From Dialog
+
+Lets you edit the current room's palette index from dialog (including inside conditionals).
+
+Use it change the overall emotional tone of a room, or to signify a certain condition. Consider the timer variant of it to create 'effects' of lightning or being hit.
+
+Using the (curRoomPal) function in any part of a series of dialog will change the current room palette to the provided index after the dialog is finished.
+
+Using (curRoomPalNow) will immediately change the current room's palette, but the current dialog will continue.
+```
+Usage: (curRoomPal "<palette index>")
+       (curRoomPalNow "<palette index>")
+
+Example: (curRoomPal 1)
+         (curRoomPalNow 5)
+```
+
+### Timer Variant Dialog Hacks
 
 ## Additional Information
 
