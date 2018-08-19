@@ -32,6 +32,16 @@ var Interpreter = function() {
 		// console.log("INTERPRET");
 		var script = parser.Parse( scriptStr );
 		script.Eval( env, function() { if(exitHandler!=null) exitHandler(); } );
+
+	// jacktrick
+	this.InterpretWithReturn = function(scriptStr, exitHandler) { // Compiles and runs code immediately
+		console.log("INTERPRET WITH RETURN");
+		var script = parser.Parse( scriptStr );
+		script.Eval( env, function() { 
+			if(exitHandler!=null){
+			console.log("@ WAS NOT NULL");
+			console.log("@@@@@@@@ " + arguments[0]);
+			 exitHandler(arguments[0]); } } );
 	}
 	this.HasScript = function(name) { return env.HasScript(name); };
 
@@ -241,6 +251,25 @@ function shakyFunc(environment,parameters,onReturn) {
 /**
 * BEGIN ADDED FUNCS FOR bitsy-advanced-dialogue-tags -jacktrick
 **/
+
+// bitsy-advanced-dialogue-tags -jacktrick
+// Implement the {exit} dialog function. It saves the room name and
+// destination X/Y coordinates so we can travel there after the dialog is over.
+function exitRoomTimerFunc(environment,parameters,onReturn) {	 
+	/*
+	var exitParams = _getExitParams('exit', parameters);
+	if (!exitParams) {
+		return;
+	}
+
+	doPlayerExit(exitParams);
+	*/
+	// store that we want to call this function in X amount of time.
+	// maybe have another variable too for 'cancel on exit'
+	// and maybe a variable for the timer now, so we can stop it if need be
+	// I'd say we store the function name exitRoomNow
+
+}
 
 // bitsy-advanced-dialogue-tags -jacktrick
 // Implement the {exitNow} dialog function. It exits to the destination room
@@ -636,8 +665,56 @@ function defineAdvancedDialogTags(functionMap){
 	addDialogTag(functionMap, "imageNow", editImage);
 
 	addDeferredDialogTag(functionMap, "imagePal", editPalette);
-	addDialogTag(functionMap, "imagePalNow", editPalette);	
+	addDialogTag(functionMap, "imagePalNow", editPalette);
+
+	functionMap.set("test", testTimeFunc)	
+	//addDialogTag(functionMap, "exitTimer", exitRoomTimerFunc)
 }
+
+function testTimeFunc(environment,parameters,onReturn) {
+	/*
+	var exitParams = _getExitParams('exitNow', parameters);
+	if (!exitParams) {
+		return;
+	}
+	*/
+
+	console.log("~ TEST TIME FUNC ~ " + Date.now())
+	setTimeout(testTime, 3000);
+	console.log(" ~ set time out set ~")
+	console.log(scriptInterpreter);
+	console.log(scriptInterpreter.parser);
+
+	addTimerFunction(testTime, environment, parameters, onReturn, 3000, "{a = 20}")
+
+	//parser.ParseExpression("a = 20");
+	/*
+	environment.EvalOperator()
+
+	var self = this; // hack to deal with scope
+		environment.EvalOperator( this.operator, this.left, this.right, 
+			function(val){
+				// console.log("EVAL EXP " + self.operator + " " + val);
+				onReturn(val);
+			} );
+	*/
+	//setInterval(testTime, 3000);
+	//testTime();
+	onReturn(null);
+}
+
+function testTime() {
+	/*
+	player().room = dest.room;
+	player().x = dest.x;
+	player().y = dest.y;
+	curRoom = dest.room;
+	*/
+	console.log(" ~~~ TEST TIME CALLED ~~~ " + Date.now());
+}
+
+
+
 
 /* ENVIRONMENT */
 var Environment = function() {

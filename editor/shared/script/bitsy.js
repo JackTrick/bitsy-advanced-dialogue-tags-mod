@@ -73,6 +73,81 @@ var advancedDialogFuncMgr = {
 	deferredDialogFunctions: {}
 };
 
+// bitsy-advanced-dialogue-tags -jacktrick, for timer
+var storedTimerFunctions = [];
+
+function addTimerFunction(func, environment, parameters, onReturn, duration, command)
+{
+	var storedTimerFunc = {};
+	storedTimerFunc["timer"] = 0;
+	storedTimerFunc["duration"] = duration;
+	storedTimerFunc["func"] = func;
+	storedTimerFunc["environment"] = environment;
+	storedTimerFunc["parameters"] = parameters;
+	storedTimerFunc["onReturn"] = onReturn;
+	storedTimerFunc["command"] = command;
+	console.log("added timer function : " + storedTimerFunc);
+	console.log("added timer function : " + storedTimerFunc["timer"]);
+	storedTimerFunctions.push(storedTimerFunc);
+	console.log(storedTimerFunctions.length);
+	//for(var func in storedTimerFunctions) {
+	for(var i = 0; i < storedTimerFunctions.length; ++i){
+		func = storedTimerFunctions[i];
+		//updateTimerFunc(storedTimerFunc, 1000);
+		console.log(" !just defined: " + func);
+		console.log(" !just defined: " + func["timer"]);
+	}
+}
+
+function updateTimerFunctions(timeSinceLast)
+{
+	//console.log("~~~ update timer functions");
+	//for(var storedTimerFunc in storedTimerFunctions) {
+	tempStorage = [];
+	for(var i = 0; i < storedTimerFunctions.length; ++i){
+		func = storedTimerFunctions[i];
+		if(updateTimerFunc(func, timeSinceLast))
+		{
+			tempStorage.push(func);
+		}
+	}
+	storedTimerFunctions = tempStorage;
+}
+
+function updateTimerFunc(timerFunc, timeSinceLast)
+{
+	console.log("~~ update timer func " + timerFunc);
+	timerFunc["timer"] += timeSinceLast;
+	var ret;
+
+	if(timerFunc["timer"] >= timerFunc["duration"])
+	{
+		console.log(" ~ " + timerFunc["command"]);
+		//scriptInterpreter.parser.Parse("a = 20");
+		console.log("===== RUNNING SCRIPT");
+		scriptInterpreter.InterpretWithReturn("{a = 2}", 
+			function(val){
+				if(val){
+					console.log("@ true here?");
+				}
+				else{
+					console.log("@ guess it was false");
+				}
+				console.log("@@@@@@@@ " + arguments[0]);
+				ret = val;
+			});
+		console.log("===== DONE RUNNING SCRIPT");
+		if(ret){
+			console.log("@ got true back");
+		}
+		else{
+			console.log("@ got false back");
+		}
+		return false;
+	}
+	return true;
+}
+
 // bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
 var maps;
 
@@ -582,9 +657,13 @@ function update() {
 	deltaTime = curTime - prevTime;
 
 	updateInput();
-
 	if (!isNarrating && !isEnding) {
 		updateAnimation();
+		// add in a thing here which updates all the timer functions, jacktrick
+		updateTimerFunctions(deltaTime);
+		//console.log("@@@ " + scriptInterpreter);
+		//console.log("@@@ " + scriptInterpreter.Parse("a = 20"));
+		
 		drawRoom( room[curRoom] ); // draw world if game has begun
 	}
 	else {
