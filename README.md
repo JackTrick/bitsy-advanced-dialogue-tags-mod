@@ -163,13 +163,13 @@ These are variants of the above hacks where you provide a duration (in milliseco
 Once the timer starts, it will wait until its duration has passed and then try to execute its dialog function. If a condition has been defined, it will be checked first to see if the dialog function should be executed.
 
 :warning: Conditions ONLY support variable/number single operations. It does NOT support strings NOR multiple operations.
-* a == 1 :white_check_mark:
-* a < 42 :white_check_mark:
-* a != 3 :white_check_mark:
-* a = a + 1 :white_check_mark:
-* a = a + b :white_check_mark:
-* a == "cat fed" :x:
-* a < 42 & a > 10 :x:
+* :white_check_mark: a == 1 
+* :white_check_mark: a < 42
+* :white_check_mark: a != 3
+* :white_check_mark: a = a + 1
+* :white_check_mark: a = a + b
+* :x: a == "cat fed"
+* :x: a < 42 & a > 10
 
 ## Additional Information
 
