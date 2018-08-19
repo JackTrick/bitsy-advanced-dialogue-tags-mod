@@ -78,25 +78,28 @@ var storedTimerFunctions = [];
 
 function addTimerFunction(func, environment, parameters, onReturn, duration, command)
 {
-	var storedTimerFunc = {};
-	storedTimerFunc["timer"] = 0;
-	storedTimerFunc["duration"] = duration;
-	storedTimerFunc["func"] = func;
-	storedTimerFunc["environment"] = environment;
-	storedTimerFunc["parameters"] = parameters;
-	storedTimerFunc["onReturn"] = onReturn;
-	storedTimerFunc["command"] = command;
-	console.log("added timer function : " + storedTimerFunc);
-	console.log("added timer function : " + storedTimerFunc["timer"]);
-	storedTimerFunctions.push(storedTimerFunc);
-	console.log(storedTimerFunctions.length);
+	var timerFunc = {};
+	timerFunc["done"] = false;
+	timerFunc["timer"] = 0;
+	timerFunc["duration"] = duration;
+	timerFunc["func"] = func;
+	timerFunc["environment"] = environment;
+	timerFunc["parameters"] = parameters;
+	timerFunc["onReturn"] = onReturn;
+	timerFunc["command"] = command;
+	console.log("added timer function : " + timerFunc);
+	//console.log("added timer function : " + storedTimerFunc["timer"]);
+	storedTimerFunctions.push(timerFunc);
+	//console.log(storedTimerFunctions.length);
 	//for(var func in storedTimerFunctions) {
+		/*
 	for(var i = 0; i < storedTimerFunctions.length; ++i){
 		func = storedTimerFunctions[i];
 		//updateTimerFunc(storedTimerFunc, 1000);
 		console.log(" !just defined: " + func);
 		console.log(" !just defined: " + func["timer"]);
 	}
+	*/
 }
 
 function updateTimerFunctions(timeSinceLast)
@@ -105,11 +108,15 @@ function updateTimerFunctions(timeSinceLast)
 	//for(var storedTimerFunc in storedTimerFunctions) {
 	tempStorage = [];
 	for(var i = 0; i < storedTimerFunctions.length; ++i){
+		
 		func = storedTimerFunctions[i];
-		if(updateTimerFunc(func, timeSinceLast))
-		{
-			tempStorage.push(func);
+		if(!func["done"]){
+			if(updateTimerFunc(func, timeSinceLast))
+			{
+				tempStorage.push(func);
+			}
 		}
+		
 	}
 	storedTimerFunctions = tempStorage;
 }
@@ -122,6 +129,7 @@ function updateTimerFunc(timerFunc, timeSinceLast)
 
 	if(timerFunc["timer"] >= timerFunc["duration"])
 	{
+		timerFunc["done"] = true;
 		console.log(" ~ " + timerFunc["command"]);
 		//scriptInterpreter.parser.Parse("a = 20");
 		console.log("===== RUNNING SCRIPT");
@@ -143,6 +151,8 @@ function updateTimerFunc(timerFunc, timeSinceLast)
 		else{
 			console.log("@ got false back");
 		}
+		console.log("@ going to call function... ");
+		timerFunc["func"](timerFunc["environment"], timerFunc["parameters"], timerFunc["onReturn"]);
 		return false;
 	}
 	return true;

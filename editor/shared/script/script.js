@@ -32,6 +32,7 @@ var Interpreter = function() {
 		// console.log("INTERPRET");
 		var script = parser.Parse( scriptStr );
 		script.Eval( env, function() { if(exitHandler!=null) exitHandler(); } );
+	}
 
 	// jacktrick
 	this.InterpretWithReturn = function(scriptStr, exitHandler) { // Compiles and runs code immediately
@@ -281,7 +282,7 @@ function exitRoomNowFunc(environment,parameters,onReturn) {
 	}
 
 	doPlayerExit(exitParams);
-	onReturn(null);
+	onReturn(null);	
 }
 
 // bitsy-advanced-dialogue-tags -jacktrick
@@ -680,13 +681,11 @@ function testTimeFunc(environment,parameters,onReturn) {
 	*/
 
 	console.log("~ TEST TIME FUNC ~ " + Date.now())
-	setTimeout(testTime, 3000);
+	//setTimeout(testTime, 3000);
 	console.log(" ~ set time out set ~")
-	console.log(scriptInterpreter);
-	console.log(scriptInterpreter.parser);
-
-	addTimerFunction(testTime, environment, parameters, onReturn, 3000, "{a = 20}")
-
+	
+	addTimerFunction(exitRoomNowFunc, environment, parameters, onReturn, 1000, "{a = 20}")
+	//function exitRoomNowFunc(environment,parameters,onReturn) {
 	//parser.ParseExpression("a = 20");
 	/*
 	environment.EvalOperator()
