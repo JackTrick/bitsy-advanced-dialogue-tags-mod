@@ -49,7 +49,7 @@ but you will need to manually add the hacks to your HTML file for them to work.
 
 ## Using the Specific Hacks
 
-### Edit Image From Dialog
+### :paintbrush: Edit Image From Dialog
 You can use this to edit the image data of sprites (including the player avatar), items, and tiles through dialog.
 
 Image data can be replaced with data from another image with (image) and (imageNow), or the palette index can be set with (imagePal) and (imagePalNow).
