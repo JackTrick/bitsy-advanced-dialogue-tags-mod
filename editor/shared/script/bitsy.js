@@ -100,48 +100,45 @@ var advancedDialogFuncMgr = {
 	deferredDialogFunctions: {}
 };
 
-// bitsy-advanced-dialogue-tags -jacktrick, for timer
+// bitsy-advanced-dialogue-tags -jacktrick, for timer functions
 var storedTimerFunctions = [];
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/*
+ * Adds a function to the stored timer functions to be checked and executed
+ * @param func - function to be called when the timer completes (takes in environment, parameters, and onReturn)
+ * @param duration - number (in milliseconds) to wait before trying to execute the function
+ * @param condition - can take simple numberic logic (no strings) to determine whether to execute the
+ *					function when the duration is complete
+ */
 function addTimerFunction(func, environment, parameters, onReturn, duration, condition)
 {
 	var timerFunc = {};
-	timerFunc["done"] = false;
-	timerFunc["timer"] = 0;
+	timerFunc["done"] = false; // kind of a 'dirty bit', might not need anymore
+	timerFunc["timer"] = 0; // how much time has passed since we started tracking
 	timerFunc["duration"] = duration;
 	timerFunc["func"] = func;
 	timerFunc["environment"] = environment;
 	timerFunc["parameters"] = parameters;
 	timerFunc["onReturn"] = onReturn;
 	timerFunc["condition"] = condition;
-	console.log("~ added timer function : " + timerFunc + " with duration of " + duration + " calling " + func);
-	for(var i=0; i<parameters.length; ++i){
-			console.log("~ parameters " + parameters[i]);
-		}
-		for(var i=0; i<timerFunc["parameters"].length; ++i){
-			console.log("~ parameters " + timerFunc["parameters"][i]);
-		}
-	//console.log("added timer function : " + storedTimerFunc["timer"]);
+	
 	storedTimerFunctions.push(timerFunc);
-	//console.log(storedTimerFunctions.length);
-	//for(var func in storedTimerFunctions) {
-		/*
-	for(var i = 0; i < storedTimerFunctions.length; ++i){
-		func = storedTimerFunctions[i];
-		//updateTimerFunc(storedTimerFunc, 1000);
-		console.log(" !just defined: " + func);
-		console.log(" !just defined: " + func["timer"]);
-	}
-	*/
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/*
+ * Iterates through the stored timer functions, updating their times and trying to execute them if needed
+ * Called by bitsy's update loop 
+ *
+ * @param timeSinceLast - time since the last frame update (milliseconds)
+ */
 function updateTimerFunctions(timeSinceLast)
 {
-	//console.log("~~~ update timer functions");
-	//for(var storedTimerFunc in storedTimerFunctions) {
+	// TODO: better way of removing elements in the array while we iterate through it
 	tempStorage = [];
+
 	for(var i = 0; i < storedTimerFunctions.length; ++i){
-		
 		func = storedTimerFunctions[i];
 		if(!func["done"]){
 			if(updateTimerFunc(func, timeSinceLast))
@@ -151,44 +148,41 @@ function updateTimerFunctions(timeSinceLast)
 		}
 		
 	}
+
 	storedTimerFunctions = tempStorage;
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/*
+ * Updates a specific stored timer function
+ * @param timerFunc - timer func object defined in addTimerFunction
+ * @param timeSinceLast - number (in milliseconds) since the last update frame
+ * @return bool - whether we should keep tracking this timer func
+ */
 function updateTimerFunc(timerFunc, timeSinceLast)
 {
-	//console.log("~~ update timer func " + timerFunc);
+	// update the stored time
 	timerFunc["timer"] += timeSinceLast;
+
 	var conditionMet = true;
 
+	// check if timer is done
 	if(timerFunc["timer"] >= timerFunc["duration"])
 	{
-		console.log("Timer is done!")
 		timerFunc["done"] = true;
-		if(timerFunc["condition"] != ""){
-			console.log("Condition found");
 
-			console.log(" ~ " + timerFunc["condition"]);
-			//scriptInterpreter.parser.Parse("a = 20");
-			console.log("===== RUNNING SCRIPT FOR " + timerFunc["condition"]);
+		// see if it has a condition
+		if(timerFunc["condition"] != ""){
+			// execute the condition and evaluate whether it's true
 			scriptInterpreter.InterpretWithReturn("{"+timerFunc["condition"]+"}", 
 				function(val){
-					if(val){
-						console.log("@ true here?");
-					}
-					else{
-						console.log("@ guess it was false");
-					}
-					console.log("@@@@@@@@ " + arguments[0]);
 					conditionMet = val;
 				});
-			console.log("===== DONE RUNNING SCRIPT");
 		}
+
+		// call the function if so, otherwise don't
 		if(conditionMet){
-			console.log("@ got true back, call the function");
 			timerFunc["func"](timerFunc["environment"], timerFunc["parameters"], timerFunc["onReturn"]);
-		}
-		else{
-			console.log("@ got false back");
 		}
 		
 		return false;
@@ -293,6 +287,9 @@ function clearGameData() {
 	        deferred.length = 0;
 	    }
 	}
+
+	// bitsy-advanced-dialogue-tags -jacktrick, clean up timers
+	storedTimerFunctions = [];
 }
 
 var width = 128;
@@ -707,10 +704,11 @@ function update() {
 	updateInput();
 	if (!isNarrating && !isEnding) {
 		updateAnimation();
-		// add in a thing here which updates all the timer functions, jacktrick
+		
+		// bitsy-advanced-dialogue-tags -jacktrick
+		// update the timer functions that are sitting around.
+		// Doing this here to play nice with bitsy's update loop
 		updateTimerFunctions(deltaTime);
-		//console.log("@@@ " + scriptInterpreter);
-		//console.log("@@@ " + scriptInterpreter.Parse("a = 20"));
 		
 		drawRoom( room[curRoom] ); // draw world if game has begun
 	}

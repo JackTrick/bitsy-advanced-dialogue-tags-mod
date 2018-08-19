@@ -34,15 +34,11 @@ var Interpreter = function() {
 		script.Eval( env, function() { if(exitHandler!=null) exitHandler(); } );
 	}
 
-	// jacktrick
+	// bitsy-advanced-dialogue-tags -jacktrick, added to have a version of Interpret that provides a function return parameter
 	this.InterpretWithReturn = function(scriptStr, exitHandler) { // Compiles and runs code immediately
-		console.log("INTERPRET WITH RETURN");
 		var script = parser.Parse( scriptStr );
 		script.Eval( env, function() { 
-			if(exitHandler!=null){
-			console.log("@ WAS NOT NULL");
-			console.log("@@@@@@@@ " + arguments[0]);
-			 exitHandler(arguments[0]); } } );
+			if(exitHandler!=null){ exitHandler(arguments[0]); } } );
 	}
 	this.HasScript = function(name) { return env.HasScript(name); };
 
@@ -257,10 +253,6 @@ function shakyFunc(environment,parameters,onReturn) {
 // Implement the {exitNow} dialog function. It exits to the destination room
 // and X/Y coordinates right damn now.
 function exitRoomNowFunc(environment,parameters,onReturn) {
-	console.log("~ EXIT ROOM NOW FUNC");
-	for(var i=0; i<parameters.length; ++i){
-		console.log("~~~ parameters " + parameters[i]);
-	}
 	var exitParams = _getExitParams('exitNow', parameters);
 	if (!exitParams) {
 		return;
@@ -347,7 +339,6 @@ function paragraphbreakFunc(environment, parameters, onReturn) {
 // Implement the {endNow} dialog function. It starts ending narration, if any,
 // and restarts the game right damn now.
 function endGameNowFunc(environment,parameters,onReturn) {
-	console.log("~ END GAME NOW FUNC");
 	// makes sure onReturn is valid. With the timer methods, there isn't always a callback -jacktrick
 	if(typeof onReturn == 'function') { 
 		onReturn(null);
@@ -502,17 +493,17 @@ function editPalette(environment, parameters, onReturn) {
 }
 
 // bitsy-advanced-dialogue-tags -jacktrick
-// (roomPal "1")
-// (roomPalNow "2")
-// (roomPal "1, <room name>")
-// (roomPalNow "2, <room name>")
-
+// edits the palette of the current room the player is in
 function editCurRoomPalette(environment, parameters, onReturn) {
 	var params = parameters[0].split(',');
 	
 	// TODO: make generic method that can edit any room
 	var roomId = curRoom;
 	var palId = params[0];	
+
+	if (!roomId || !palId ) {
+    	throw new Error('Edit current room palette expects only one parameter "paletteId"');
+ 	}
 
 	room[roomId].pal = palId;
   	// done
@@ -697,11 +688,8 @@ function defineAdvancedDialogTags(functionMap){
 
 	addDeferredDialogTag(functionMap, "curRoomPalTimer", editCurRoomPaletteTimer);
 	addDialogTag(functionMap, "curRoomPalTimerNow", editCurRoomPaletteTimer);
-
-
-	//functionMap.set("test", testTimeFunc)	
-	//addDialogTag(functionMap, "exitTimer", exitRoomTimerFunc)
 }
+
 /*
 (imageTimer "<map>, <target>, <source>, <duration>")
 (imageTimerNow "<map>, <target>, <source>, <duration>")
@@ -732,50 +720,47 @@ function defineAdvancedDialogTags(functionMap){
 
 */
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/* methods for implementing the timer variants of the hacked dialog tags */
 function editImageTimer(environment, parameters, onReturn){
-	console.log("~ EDIT IMAGE TIMER FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, editImage, 4);
 }
 
 function editPaletteTimer(environment, parameters, onReturn){
-	console.log("~ EDIT PALETTE TIMER FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, editPalette, 4);
 }
 
 function editCurRoomPaletteTimer(environment, parameters, onReturn){
-	console.log("~ EDIT CUR ROOM PALETTE TIMER FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, editCurRoomPalette, 2);
 }
 
+// currently doesn't support the "sprite" parameter of ExitRoom, TODO: support that
 function exitRoomTimerFunc(environment, parameters, onReturn){
-	console.log("~ EXIT ROOM TIMER FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, exitRoomNowFunc, 4);
 }
 
 function endGameTimerFunc(environment, parameters, onReturn){
-	console.log("~ END GAME TIMER FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, endGameNowFunc, 1);
 }
 
 function endGameTimerNarrateFunc(environment, parameters, onReturn){
-	console.log("~ END GAME TIMER NARRATE FUNC");
 	addTimerFuncHelper(environment, parameters, onReturn, endGameNowFunc, 2);
 }
 
+// bitsy-advanced-dialogue-tags -jacktrick
+/* helper function for the timer variants of the hacked dialog tags */
 function addTimerFuncHelper(environment, parameters, onReturn, func, conditionIndex)
 {
-	console.log("~ addTimerFuncHelper -> " + conditionIndex);
 	var params = parameters[0].split(/,\s?/);
+	// duration is always the 1st parameter
 	var duration = params[0];
 	var tempArray = [];
 	var tempString = "";
 	var leftoverParameters = {};
 
+	// grabbing the other parameters for passing to the hacked dialog tags
 	if(conditionIndex > 1){
-		console.log("grabbing leftover parameters from 1 to " + conditionIndex);
-		console.log(typeof(parameters));
 		tempArray = params.slice(1,conditionIndex);
-
 
 		for(var i=0; i<tempArray.length; ++i){
 			tempString += tempArray[i];			
@@ -785,93 +770,16 @@ function addTimerFuncHelper(environment, parameters, onReturn, func, conditionIn
 		}
 		leftoverParameters[0] = tempString;
 	}
+
+	// the condition is an optional last parameter
 	var condition = "";
-	console.log("Figuring out condition: " + condition + " " + params.length);
 	if(params.length > conditionIndex)
 	{
 		condition = params[conditionIndex];
-		console.log("~ Condition is : " + condition);
 	}
-	else{
-		console.log("~ no Condition");
-	}
-	
-
-	//addTimerFunction(endGameNowFunc, environment, leftoverParameters, onReturn, duration, condition);	
 
 	addTimerFunction(func, environment, leftoverParameters, onReturn, duration, condition);
 }
-/*
-function endGameNowFunc(environment,parameters,onReturn) {
-	onReturn(null);
-	startNarrating(parameters[0] || null, true);
-}
-
-// bitsy-advanced-dialogue-tags -jacktrick
-// Implement the {end} dialog function. It schedules the game to end after the current dialog finishes.
-function endGameFunc(environment,parameters,onReturn) {	 
-	startNarrating(parameters[0] || null, true);
-}
-*/
-
-function testTimeFunc(environment,parameters,onReturn) {
-	var params = parameters[0].split(/,\s?/);
-  	params[0] = (params[0] || "").toLowerCase();
-  	var mapId = params[0];
-  	var tgtId = params[1];
-  	var palId = params[2];
-
-	console.log("~~ " + parameters);
-	var exitParams = _getExitParams('test', parameters);
-	if (!exitParams) {
-		return;
-	}
-	console.log("~~~ exit " + exitParams);
-
-	var timerParams = _getTimerParams('test', parameters);	
-	if (!timerParams) {
-		return;
-	}
-
-	console.log("~~~ timer " + timerParams);
-
-	console.log("~ TEST TIME FUNC ~ " + Date.now())
-	//setTimeout(testTime, 3000);
-	console.log(" ~ set time out set ~")
-	
-	addTimerFunction(exitRoomNowFunc, environment, parameters, onReturn, 1000, "{a == 20}")
-	
-
-
-
-	//function exitRoomNowFunc(environment,parameters,onReturn) {
-	//parser.ParseExpression("a = 20");
-	/*
-	environment.EvalOperator()
-
-	var self = this; // hack to deal with scope
-		environment.EvalOperator( this.operator, this.left, this.right, 
-			function(val){
-				// console.log("EVAL EXP " + self.operator + " " + val);
-				onReturn(val);
-			} );
-	*/
-	//setInterval(testTime, 3000);
-	//testTime();
-	onReturn(null);
-}
-
-function testTime() {
-	/*
-	player().room = dest.room;
-	player().x = dest.x;
-	player().y = dest.y;
-	curRoom = dest.room;
-	*/
-	console.log(" ~~~ TEST TIME CALLED ~~~ " + Date.now());
-}
-
-
 
 
 /* ENVIRONMENT */
