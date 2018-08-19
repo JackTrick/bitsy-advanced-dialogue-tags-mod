@@ -171,6 +171,27 @@ Once the timer starts, it will wait until its duration has passed and then try t
 * :x: a == "cat fed"
 * :x: a < 42 & a > 10
 
+Using the normal variant function in any part of a series of dialog will start the timer after the dialog is finished.
+
+Using the Now variant function will immediately start the timer, but the current dialog will continue. 
+
+:heavy_exclamation_mark: If you define in a dialog a series of Now timers with a condition, and the condition evaluates to false, all following Now timers in that dialog will be ignored. Standard timers will evaluate individually regardless of any of their conditions.
+
+#### :paintbrush: Edit Image From Dialog
+```
+WARNING: In exit coordinates, the TOP LEFT tile is (0,0). In sprite coordinates,
+         the BOTTOM LEFT tile is (0,0). If you'd like to use sprite coordinates,
+         add the word "sprite" as the fourth parameter to the exit function.
+
+Usage: (exit "<room name>,<x>,<y>")
+       (exit "<room name>,<x>,<y>,sprite")
+       (exitNow "<room name>,<x>,<y>")
+       (exitNow "<room name>,<x>,<y>,sprite")
+
+Example: (exit "FinalRoom,8,4")
+         (exitNow "FinalRoom,8,11,sprite")
+```
+
 ## Additional Information
 
 My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a developer add them to the html post-export and letting kitsy inject them where appropriate.
