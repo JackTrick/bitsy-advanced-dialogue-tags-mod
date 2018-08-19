@@ -23,7 +23,7 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * Use it as you would standard Bitsy.
 
 ```
-NOTE: THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED.
+:warning: NOTE: THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED. :warning:
 
 EXPORTED GAMES SHOULD STILL RUN IN ANY BROWSER
 ```
@@ -33,7 +33,7 @@ An example level can be downloaded [here](https://github.com/JackTrick/bitsyhack
 
 You can also play the level [here](https://jacktrick.itch.io/bitsy-advanced-dialog-tag-mods-example).
 
-### Warning
+### :warning: Warning
 
 I tried to be fairly limited with my changes to avoid the possibility of bugs that could leave your bitsy game file in a bad state. I'm *pretty* sure you should be fine, but use at your own risk and save a backup copy.
 
@@ -157,6 +157,8 @@ Example: (curRoomPal 1)
 ```
 
 ### :alarm_clock: Timer Variant Dialog Hacks
+
+These are variants of the above hacks where you provide a time (in milliseconds) and an optional condition.
 
 ## Additional Information
 
