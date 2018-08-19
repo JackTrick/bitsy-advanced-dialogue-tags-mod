@@ -31,15 +31,18 @@ var names = {
 /**
 @file bitsy-advanced-dialogue-tags
 @author jacktrick
+@link https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod
 
 Modified from Bitsy 5.1
 
+================
+Ver 1.0
 ================
 
 Pretty much all credit for this goes to Sean S. LeBlanc and @mildmojo for the original hacks:
 https://github.com/seleb/bitsy-hacks
 
-@summary adding extended dialogue tag functionality to the bitsy editor. This includes:
+@summary adding extended dialog tag functionality to the bitsy editor. This includes:
 exit-from-dialogue       - https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js
 end-from-dialogue        - https://github.com/seleb/bitsy-hacks/blob/master/dist/end-from-dialog.js
 edit-image-from-dialogue - https://github.com/seleb/bitsy-hacks/blob/master/dist/edit%20image%20from%20dialog.js
@@ -66,32 +69,29 @@ Parts of the code I changed can be found accompanied by a comment of:
 	(again, that goes to Adam, Sean, and @mildmojo). 
 	I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
 
-conditions can ONLY be numbers
+================
+Ver 2.0
+================
 
-(imageTimer "<map>, <target>, <source>, <duration>")
-(imageTimerNow "<map>, <target>, <source>, <duration>")
-(imagePalTimer "<map>, <target>, <palette>, <duration>")
-(imagePalNowTimer "<map>, <target>, <palette>, <duration>")
+Added one minor and one major change.
 
-(imageTimer "<map>, <target>, <source>, <duration>, <condition>")
-(imageTimerNow "<map>, <target>, <source>, <duration>, <condition>")
-(imagePalTimer "<map>, <target>, <palette>, <duration>, <condition>")
-(imagePalNowTimer "<map>, <target>, <palette>, <duration>, <condition>")
+- edit-current-room-palette -
+You are now able to edit the current room's palette with a dialog command (curRoomPal and curRoomPalNow)
 
-(endTimer "<duration>")
-(endTimer "<ending narration>, <duration>")
-(endTimerNow "<duration>")
-(endTimerNow "<ending narration>, <duration>")
+- timers -
+You are now able to define timers in dialog that fire off one of hacked tags implemented in this mod.
 
-(endTimer "<duration>, <condition>")
-(endTimer "<ending narration>, <duration>, <condition>")
-(endTimerNow "<duration>, <condition>")
-(endTimerNow "<ending narration>, <duration>, <condition>")
+General format is like:
+{exitRoomTimer "<duration>, <exit room param 1>, <exit room param 2>, ..., <condition>}
 
-(exitTimer "<room name>,<x>,<y>, <duration>")
-(exitTimer "<room name>,<x>,<y>, <duration>, <condition>")
-(exitTimerNow "<room name>,<x>,<y>, <duration>")
-(exitTimerNow "<room name>,<x>,<y>, <duration>, <condition>")
+Duration is in milliseconds.
+
+Condition is an optional parameter that does a simple logic check.
+Note, it does NOT support string comparisons or operations, but standard variable assignment 
+and single-operator boolean checks should function.
+
+Much thanks to @ducklingsmith for their help!
+
 */
 
 // bitsy-advanced-dialogue-tags -jacktrick
