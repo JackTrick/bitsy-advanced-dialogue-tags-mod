@@ -13,6 +13,8 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * :end: [end-from-dialog](https://github.com/seleb/bitsy-hacks/blob/master/dist/end-from-dialog.js): trigger an ending from dialog, including narration text
 * :door: [exit-from-dialog](https://github.com/seleb/bitsy-hacks/blob/master/dist/exit-from-dialog.js): exit to another room from dialog, including conditionals
 * :page_with_curl: [paragraph-break](https://github.com/seleb/bitsy-hacks/blob/master/dist/paragraph-break.js): Adds paragraph breaks to the dialogue parser
+* :rainbow: edit-current-room-palette: edit the current room's palette index
+* :alarm_clock: dialog-hack-timer: adds a set of functions that are variants of the above hacks with a timer that determines when they execute
 
 ### How To Use
 
