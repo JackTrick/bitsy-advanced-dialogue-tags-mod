@@ -77,9 +77,10 @@ Parameters:
      source: palette index (0 is bg, 1 is tiles, 2 is sprites/items, 
                            higher requires editing your game data to include more)
 
-Usage: (image "<map>, <target>, <source>")
-       (imageNow "<map>, <target>, <source>")
+Usage: (image "<map>, <target>, <source>")       
        (imagePal "<map>, <target>, <palette>")
+
+       (imageNow "<map>, <target>, <source>")
        (imagePalNow "<map>, <target>, <palette>")
 
 Example: (image "SPR, A, a")
@@ -100,6 +101,7 @@ Using (endNow) with narration text will immediately exit the dialog, clear the b
 ```
 Usage: (end)
        (end "<ending narration>")
+
        (endNow)
        (endNow "<ending narration>")
 
@@ -124,6 +126,7 @@ WARNING: In exit coordinates, the TOP LEFT tile is (0,0). In sprite coordinates,
 
 Usage: (exit "<room name>,<x>,<y>")
        (exit "<room name>,<x>,<y>,sprite")
+
        (exitNow "<room name>,<x>,<y>")
        (exitNow "<room name>,<x>,<y>,sprite")
 
@@ -150,10 +153,11 @@ Using the (curRoomPal) function in any part of a series of dialog will change th
 Using (curRoomPalNow) will immediately change the current room's palette, but the current dialog will continue.
 ```
 Usage: (curRoomPal "<palette index>")
+
        (curRoomPalNow "<palette index>")
 
-Example: (curRoomPal 1)
-         (curRoomPalNow 5)
+Example: (curRoomPal "1")
+         (curRoomPalNow "5")
 ```
 
 ### :alarm_clock: Timer Variant Dialog Hacks
@@ -173,28 +177,82 @@ Once the timer starts, it will wait until its duration has passed and then try t
 
 Using the normal variant function in any part of a series of dialog will start the timer after the dialog is finished.
 
-Using the Now variant function will immediately start the timer, but the current dialog will continue. 
+Using the (Now) variant function will immediately start the timer, but the current dialog will continue. 
 
 :heavy_exclamation_mark: If you define in a dialog a series of Now timers with a condition, and the condition evaluates to false, all following Now timers in that dialog will be ignored. Standard timers will evaluate individually regardless of any of their conditions.
 
-#### :paintbrush: Edit Image From Dialog
+#### :paintbrush: Edit Image From Dialog, :alarm_clock: Timer Variant
+
 ```
-WARNING: In exit coordinates, the TOP LEFT tile is (0,0). In sprite coordinates,
-         the BOTTOM LEFT tile is (0,0). If you'd like to use sprite coordinates,
-         add the word "sprite" as the fourth parameter to the exit function.
+Usage: (imageTimer "<duration>, <map>, <target>, <source>")
+       (imageTimer "<duration>, <map>, <target>, <source>, <condition>")
+       (imageTimerPal "<duration>, <map>, <target>, <palette>")
+       (imageTimerPal "<duration>, <map>, <target>, <palette>")
+       
+       (imageTimerNow "<duration>, <map>, <target>, <source>")
+       (imageTimerNow "<duration>, <map>, <target>, <source>, <condition>")
+       (imageTimerPalNow "<duration>, <map>, <target>, <palette>")
+       (imageTimerPalNow "<duration>, <map>, <target>, <palette>, <condition>")
 
-Usage: (exit "<room name>,<x>,<y>")
-       (exit "<room name>,<x>,<y>,sprite")
-       (exitNow "<room name>,<x>,<y>")
-       (exitNow "<room name>,<x>,<y>,sprite")
+Example: (imageTimer "3000, SPR, A, a") // 3000 = 3 seconds
+         (imageTimerNow "1000, TIL, a, floor, lava == 1")
+         (imageTimer "3000, ITM, a, b")
+         (imageTimerPal "1500, SPR, A, 1, a = a + 1")
+         (imageTimerPalNow "1000, TIL, floor, 2, b != a")
+```
 
-Example: (exit "FinalRoom,8,4")
-         (exitNow "FinalRoom,8,11,sprite")
+#### :door: End From Dialog, :alarm_clock: Timer Variant
+
+A specific (Narrate) version of the dialog function is used for specifying end narration.
+
+```
+Usage: (endTimer "<duration>")
+       (endTimer "<duration>, <condition>")
+       (endTimerNarrate "<duration>, <ending narration>")
+       (endTimerNarrate "<duration>, <ending narration>, <condition>")
+
+       (endTimerNow "<duration>")
+       (endTimerNow "<duration>, <condition>")       
+       (endTimerNarrateNow "<duration>, <ending narration>")
+       (endTimerNarrateNow "<duration>, <ending narration>, <condition>")
+
+Example: (endTimer "5000")
+         (endTimerNarrate "10000", You ran out of time..., lava = 1")
+         (endTimerNarrateNow "3000, The computer is still online! The chamber floods with neurotoxin.")
+```
+
+#### :door: Exit From Dialog, :alarm_clock: Timer Variant
+
+Note, the Timer Variant of Exit From Dialog does NOT support sprite coordinate positioning at this time.
+```
+WARNING: In exit coordinates, the TOP LEFT tile is (0,0). 
+
+Usage: (exitTimer "<duration>, <room name>, <x>, <y>")
+       (exitTimer "<duration>, <room name>, <x>, <y>, <condition>")
+
+       (exitTimerNow "<duration>, <room name>, <x>, <y>")
+       (exitTimerNow "<duration>, <room name>, <x>, <y>, <condition>")
+
+Example: (exitTimer "3000, FinalRoom, 8, 4")
+         (exitTimerNow "5000, FinalRoom, 8, 11, a >= 42)
+```
+
+#### :rainbow: Edit Current Room Palette From Dialog, :alarm_clock: Timer Variant
+
+```
+Usage: (curRoomPalTimer "<duration>, <palette index>")
+       (curRoomPalTimer "<duration>, <palette index>, <condition>")
+
+       (curRoomPalTimerNow "<duration>, <palette index>")
+       (curRoomPalTimerNow "<duration>, <palette index>, <condition>")
+
+Example: (curRoomPal "4000, 1, a == 0")
+         (curRoomPalNow "3000, 5")
 ```
 
 ## Additional Information
 
-My 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a developer add them to the html post-export and letting kitsy inject them where appropriate.
+This 'hack' is not particularly artful, it just places the hack code directly into bitsy rather than having a developer add them to the html post-export and letting kitsy inject them where appropriate.
 
 I figured the dialogue tags were relatively safe to add to the bitsy maker, as the tags could just exist 'under the hood' unless someone actually wanted to use them.
 
