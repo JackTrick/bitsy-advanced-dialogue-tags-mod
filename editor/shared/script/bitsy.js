@@ -65,6 +65,33 @@ Parts of the code I changed can be found accompanied by a comment of:
 	Note that this is not me trying to claim total credit for the code there 
 	(again, that goes to Adam, Sean, and @mildmojo). 
 	I just wanted to tag it so it could easily be found to edit/update/remove as people saw fit.
+
+conditions can ONLY be numbers
+
+(imageTimer "<map>, <target>, <source>, <duration>")
+(imageTimerNow "<map>, <target>, <source>, <duration>")
+(imagePalTimer "<map>, <target>, <palette>, <duration>")
+(imagePalNowTimer "<map>, <target>, <palette>, <duration>")
+
+(imageTimer "<map>, <target>, <source>, <duration>, <condition>")
+(imageTimerNow "<map>, <target>, <source>, <duration>, <condition>")
+(imagePalTimer "<map>, <target>, <palette>, <duration>, <condition>")
+(imagePalNowTimer "<map>, <target>, <palette>, <duration>, <condition>")
+
+(endTimer "<duration>")
+(endTimer "<ending narration>, <duration>")
+(endTimerNow "<duration>")
+(endTimerNow "<ending narration>, <duration>")
+
+(endTimer "<duration>, <condition>")
+(endTimer "<ending narration>, <duration>, <condition>")
+(endTimerNow "<duration>, <condition>")
+(endTimerNow "<ending narration>, <duration>, <condition>")
+
+(exitTimer "<room name>,<x>,<y>, <duration>")
+(exitTimer "<room name>,<x>,<y>, <duration>, <condition>")
+(exitTimerNow "<room name>,<x>,<y>, <duration>")
+(exitTimerNow "<room name>,<x>,<y>, <duration>, <condition>")
 */
 
 // bitsy-advanced-dialogue-tags -jacktrick
@@ -76,7 +103,7 @@ var advancedDialogFuncMgr = {
 // bitsy-advanced-dialogue-tags -jacktrick, for timer
 var storedTimerFunctions = [];
 
-function addTimerFunction(func, environment, parameters, onReturn, duration, command)
+function addTimerFunction(func, environment, parameters, onReturn, duration, condition)
 {
 	var timerFunc = {};
 	timerFunc["done"] = false;
@@ -86,8 +113,14 @@ function addTimerFunction(func, environment, parameters, onReturn, duration, com
 	timerFunc["environment"] = environment;
 	timerFunc["parameters"] = parameters;
 	timerFunc["onReturn"] = onReturn;
-	timerFunc["command"] = command;
-	console.log("added timer function : " + timerFunc);
+	if(typeof onReturn == 'function') { 
+		console.log("&&& is a function!");
+	}
+	else{
+		console.log("&&& is not a function!");	
+	}
+	timerFunc["condition"] = condition;
+	console.log("added timer function : " + timerFunc + " with condition of " + condition);
 	//console.log("added timer function : " + storedTimerFunc["timer"]);
 	storedTimerFunctions.push(timerFunc);
 	//console.log(storedTimerFunctions.length);
@@ -123,36 +156,44 @@ function updateTimerFunctions(timeSinceLast)
 
 function updateTimerFunc(timerFunc, timeSinceLast)
 {
-	console.log("~~ update timer func " + timerFunc);
+	//console.log("~~ update timer func " + timerFunc);
 	timerFunc["timer"] += timeSinceLast;
-	var ret;
+	var conditionMet = true;
 
 	if(timerFunc["timer"] >= timerFunc["duration"])
 	{
+		console.log("Timer is done!")
 		timerFunc["done"] = true;
-		console.log(" ~ " + timerFunc["command"]);
-		//scriptInterpreter.parser.Parse("a = 20");
-		console.log("===== RUNNING SCRIPT");
-		scriptInterpreter.InterpretWithReturn("{a = 2}", 
-			function(val){
-				if(val){
-					console.log("@ true here?");
-				}
-				else{
-					console.log("@ guess it was false");
-				}
-				console.log("@@@@@@@@ " + arguments[0]);
-				ret = val;
-			});
-		console.log("===== DONE RUNNING SCRIPT");
-		if(ret){
-			console.log("@ got true back");
+		if(timerFunc["condition"] != ""){
+			console.log("Condition found");
+
+			console.log(" ~ " + timerFunc["condition"]);
+			//scriptInterpreter.parser.Parse("a = 20");
+			console.log("===== RUNNING SCRIPT FOR " + timerFunc["condition"]);
+			scriptInterpreter.InterpretWithReturn("{"+timerFunc["condition"]+"}", 
+				function(val){
+					if(val){
+						console.log("@ true here?");
+					}
+					else{
+						console.log("@ guess it was false");
+					}
+					console.log("@@@@@@@@ " + arguments[0]);
+					conditionMet = val;
+				});
+			console.log("===== DONE RUNNING SCRIPT");
+		}
+		if(conditionMet){
+			console.log("@ got true back, call the function");
+			timerFunc["func"](timerFunc["environment"], timerFunc["parameters"], timerFunc["onReturn"]);
 		}
 		else{
 			console.log("@ got false back");
 		}
 		console.log("@ going to call function... ");
-		timerFunc["func"](timerFunc["environment"], timerFunc["parameters"], timerFunc["onReturn"]);
+	
+
+		
 		return false;
 	}
 	return true;
