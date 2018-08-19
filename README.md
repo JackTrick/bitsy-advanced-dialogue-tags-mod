@@ -89,7 +89,7 @@ Example: (image "SPR, A, a")
          (imagePalNow "TIL, floor, 2")
 ```
 
-### End From Dialog
+### :end: End From Dialog
 Lets you end the game from dialog (including inside conditionals).
 
 Using the (end) function in any part of a series of dialog will make the game end after the dialog is finished. Ending the game resets it back to the intro.
@@ -108,7 +108,7 @@ Example: (end)
          (endNow "The computer is still online! The chamber floods with neurotoxin.")
 ```
 
-### Exit From Dialog
+### :door: Exit From Dialog
 Lets you exit to another room from dialog (including inside conditionals). 
 
 Use it to make an invisible sprite that acts as a conditional exit, use it to warp somewhere after a conversation, use it to put a guard at your gate who only lets you in once you're disguised, use it to require payment before the ferryman will take you across the river.
@@ -131,7 +131,7 @@ Example: (exit "FinalRoom,8,4")
          (exitNow "FinalRoom,8,11,sprite")
 ```
 
-### Paragraph Break
+### :page_with_curl:  Paragraph Break
 Adds a (p) tag to the dialogue parser that forces the following text to start on a fresh dialogue screen, eliminating the need to spend hours testing line lengths or adding multiple line breaks that then have to be reviewed when you make edits or change the font size.
 ```
 Usage: (p)
@@ -139,7 +139,7 @@ Usage: (p)
 Example: I am a cat(p)and my dialogue contains multitudes
 ```
 
-### Edit Current Room Palette From Dialog
+### :rainbow: Edit Current Room Palette From Dialog
 
 Lets you edit the current room's palette index from dialog (including inside conditionals).
 
@@ -156,7 +156,7 @@ Example: (curRoomPal 1)
          (curRoomPalNow 5)
 ```
 
-### Timer Variant Dialog Hacks
+### :alarm_clock: Timer Variant Dialog Hacks
 
 ## Additional Information
 
