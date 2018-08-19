@@ -113,14 +113,14 @@ function addTimerFunction(func, environment, parameters, onReturn, duration, con
 	timerFunc["environment"] = environment;
 	timerFunc["parameters"] = parameters;
 	timerFunc["onReturn"] = onReturn;
-	if(typeof onReturn == 'function') { 
-		console.log("&&& is a function!");
-	}
-	else{
-		console.log("&&& is not a function!");	
-	}
 	timerFunc["condition"] = condition;
-	console.log("added timer function : " + timerFunc + " with condition of " + condition);
+	console.log("~ added timer function : " + timerFunc + " with duration of " + duration + " calling " + func);
+	for(var i=0; i<parameters.length; ++i){
+			console.log("~ parameters " + parameters[i]);
+		}
+		for(var i=0; i<timerFunc["parameters"].length; ++i){
+			console.log("~ parameters " + timerFunc["parameters"][i]);
+		}
 	//console.log("added timer function : " + storedTimerFunc["timer"]);
 	storedTimerFunctions.push(timerFunc);
 	//console.log(storedTimerFunctions.length);
@@ -190,9 +190,6 @@ function updateTimerFunc(timerFunc, timeSinceLast)
 		else{
 			console.log("@ got false back");
 		}
-		console.log("@ going to call function... ");
-	
-
 		
 		return false;
 	}
