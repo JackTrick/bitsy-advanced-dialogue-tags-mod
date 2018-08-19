@@ -23,7 +23,7 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * Use it as you would standard Bitsy.
 
 ```
-:warning: NOTE: THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED. :warning:
+THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED. :warning:
 
 EXPORTED GAMES SHOULD STILL RUN IN ANY BROWSER
 ```
@@ -158,7 +158,18 @@ Example: (curRoomPal 1)
 
 ### :alarm_clock: Timer Variant Dialog Hacks
 
-These are variants of the above hacks where you provide a time (in milliseconds) and an optional condition.
+These are variants of the above hacks where you provide a duration (in milliseconds) and an optional condition (simple logic check)
+
+Once the timer starts, it will wait until its duration has passed and then try to execute its dialog function. If a condition has been defined, it will be checked first to see if the dialog function should be executed.
+
+:warning: Conditions ONLY support variable/number single operations. It does NOT support strings NOR multiple operations.
+* a == 1 :white_check_mark:
+* a < 42 :white_check_mark:
+* a != 3 :white_check_mark:
+* a = a + 1 :white_check_mark:
+* a = a + b :white_check_mark:
+* a == "cat fed" :x:
+* a < 42 & a > 10 :x:
 
 ## Additional Information
 
