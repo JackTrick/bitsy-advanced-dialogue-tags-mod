@@ -379,7 +379,6 @@ function load_game(game_data, startWithTitle) {
 
 	// setInterval(updateLoadingScreen, 300); // hack test
 
-	onready(startWithTitle);
 
 	// bitsy-advanced-dialogue-tags -jacktrick, for edit-image-from-dialogue
 	maps = {
@@ -390,6 +389,8 @@ function load_game(game_data, startWithTitle) {
 	    itm: item,
 	    item: item,
 	};
+	
+	onready(startWithTitle);
 }
 
 // bitsy-advanced-dialogue-tags -jacktrick

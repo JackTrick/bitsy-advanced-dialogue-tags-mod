@@ -99,8 +99,16 @@ this.importGame = function( html ) {
 	var scriptStart = '<script type="bitsyGameData" id="exportedGameData">\n';
 	var scriptEnd = '</script>';
 	i = html.indexOf( scriptStart );
-	console.log(i);
-	if(i > -1) {
+	
+	if(i == -1){
+		// bitsy-advanced-dialogue-tags -jacktrick
+		// handling files that are CRLF
+		console.log("CRLF html file detected");
+		scriptStart = '<script type="bitsyGameData" id="exportedGameData">\r\n';
+		i = html.indexOf( scriptStart );
+	}
+
+	if(i > -1) {		
 		console.log("NEW STYLE");
 
 		i = i + scriptStart.length;
