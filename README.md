@@ -152,12 +152,14 @@ Using the (curRoomPal) function in any part of a series of dialog will change th
 
 Using (curRoomPalNow) will immediately change the current room's palette, but the current dialog will continue.
 ```
-Usage: (curRoomPal "<palette index>")
+       palette:    can either be the index or the name of the desired palette
 
-       (curRoomPalNow "<palette index>")
+Usage: (curRoomPal "<palette>")
+
+       (curRoomPalNow "<palette>")
 
 Example: (curRoomPal "1")
-         (curRoomPalNow "5")
+         (curRoomPalNow "noir colors")
 ```
 
 ### :alarm_clock: Timer Variant Dialog Hacks

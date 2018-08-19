@@ -1276,6 +1276,11 @@ function player() {
 
 // Sort of a hack for legacy palette code (when it was just an array)
 function getPal(id) {
+	// bitsy-advanced-dialogue-tags -jacktrick
+	// a check in case someone defined an invalid palette
+	if(!palette.hasOwnProperty(id)){
+		id = "0";
+	}
 	return palette[ id ].colors;
 }
 
@@ -2241,8 +2246,13 @@ function getTileImage(t,palId,frameIndex) {
 			drwId += "_" + t.animation.frameIndex;
 		}
 	}
-	
+	try{
 	return imageStore.render[ palId ][ t.col ][ drwId ];
+}
+catch(err)
+{
+	console.log(palId);
+}
 }
 
 function getSpriteImage(s,palId,frameIndex) {
@@ -2290,8 +2300,11 @@ function curPal() {
 	return getRoomPal(curRoom);
 }
 
-function getRoomPal(roomId) {
+function getRoomPal(roomId) {	
 	if (room[roomId].pal != null) {
+		// bitsy-advanced-dialogue-tags -jacktrick
+		// a check in case someone defined an invalid palette
+		//if(palette. room[roomId].pal)
 		//a specific palette was chosen
 		return room[roomId].pal;
 	}

@@ -502,10 +502,47 @@ function editCurRoomPalette(environment, parameters, onReturn) {
 	var palId = params[0];	
 
 	if (!roomId || !palId ) {
-    	throw new Error('Edit current room palette expects only one parameter "paletteId"');
+    	throw new Error('Edit current room palette expects only one parameter "<palette source>"');
  	}
 
-	room[roomId].pal = palId;
+ 	if(palette.hasOwnProperty(palId))
+ 	{
+ 		// found palette property by id
+ 		console.log("~~~ found palette property by id " + palId)
+ 		room[roomId].pal = palId; 		
+ 	}
+ 	else{
+ 		// look for it by its name
+ 		console.log("~~~ did not find palette property by id " + palId)	
+
+ 		for (var pal in palette) {
+ 			console.log("Palette Index: " + pal);
+			if (palette.hasOwnProperty(pal)) {			
+				if(palette[pal].name === palId){
+					console.log("FOUND " + palId + " using palette of " + pal);
+					room[roomId].pal = pal; 
+				}
+				else{
+					console.log("Using default");
+					room[roomId].pal = "0";
+				}
+				//console.log("^ palette name  " + JSON.stringify(pal.name));
+				//console.log("^ palette name  " + JSON.stringify(pal["name"]));
+				//console.log("^ palette name  " + pal.colors);
+				//console.log("^ palette name  " + pal["colors"]);
+			}
+		}
+ 	}
+
+ 	
+
+	//console.log(JSON.stringify(palette["0"], null, 4))
+	//console.log(JSON.stringify(palette["1"], null, 4))
+	//console.log(JSON.stringify(palette["2"], null, 4))
+	
+
+
+	//room[roomId].pal = palId;
   	// done
   	if (onReturn) {
 	    onReturn(null);
@@ -689,36 +726,6 @@ function defineAdvancedDialogTags(functionMap){
 	addDeferredDialogTag(functionMap, "curRoomPalTimer", editCurRoomPaletteTimer);
 	addDialogTag(functionMap, "curRoomPalTimerNow", editCurRoomPaletteTimer);
 }
-
-/*
-(imageTimer "<map>, <target>, <source>, <duration>")
-(imageTimerNow "<map>, <target>, <source>, <duration>")
-(imagePalTimer "<map>, <target>, <palette>, <duration>")
-(imagePalNowTimer "<map>, <target>, <palette>, <duration>")
-
-(imageTimer "<map>, <target>, <source>, <duration>, <condition>")
-(imageTimerNow "<map>, <target>, <source>, <duration>, <condition>")
-(imagePalTimer "<map>, <target>, <palette>, <duration>, <condition>")
-(imagePalNowTimer "<map>, <target>, <palette>, <duration>, <condition>")
-
-(endTimer "<duration>")
-(endTimer "<duration>, <condition>")
-(endTimerNow "<duration>")
-(endTimerNow "<duration>, <condition>")
-
-(endTimerNarrate "<ending narration>, <duration>")
-(endTimerNarrate "<ending narration>, <duration>, <condition>")
-(endTimerNowNarrate "<ending narration>, <duration>")
-(endTimerNowNarrate "<ending narration>, <duration>, <condition>")
-
-(exitTimer "<room name>,<x>,<y>, <duration>")
-(exitTimer "<room name>,<x>,<y>, <duration>, <condition>")
-(exitTimerNow "<room name>,<x>,<y>, <duration>")
-(exitTimerNow "<room name>,<x>,<y>, <duration>, <condition>")
-
-{test "room-edit_image, 4, 7" "0, a = 20")
-
-*/
 
 // bitsy-advanced-dialogue-tags -jacktrick
 /* methods for implementing the timer variants of the hacked dialog tags */
