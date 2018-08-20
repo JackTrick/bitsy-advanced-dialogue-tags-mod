@@ -23,15 +23,15 @@ This modifies the Bitsy Game Maker to automatically include the following hacks:
 * Use it as you would standard Bitsy.
 
 ```
-THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED. :warning:
+THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED.
 
 EXPORTED GAMES SHOULD STILL RUN IN ANY BROWSER
 ```
 
-## Example File
-An example level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
+## :smiley_cat: Example File :tea:
+An example level showcasing the changes is playable [here](https://jacktrick.itch.io/bitsy-advanced-dialog-tag-mods-example).
 
-You can also play the level [here](https://jacktrick.itch.io/bitsy-advanced-dialog-tag-mods-example).
+The level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
 
 ### :warning: Warning
 
@@ -152,14 +152,16 @@ Using the (curRoomPal) function in any part of a series of dialog will change th
 
 Using (curRoomPalNow) will immediately change the current room's palette, but the current dialog will continue.
 ```
-       palette:    can either be the index or the name of the desired palette
+       palette:    should be the index of the palette (can be found in the game data).
+                   You can try palette names, but I've found that buggy so far. 
+                   Will try to fix that in a future update.
 
 Usage: (curRoomPal "<palette>")
 
        (curRoomPalNow "<palette>")
 
 Example: (curRoomPal "1")
-         (curRoomPalNow "noir colors")
+         (curRoomPalNow "2")
 ```
 
 ### :alarm_clock: Timer Variant Dialog Hacks
