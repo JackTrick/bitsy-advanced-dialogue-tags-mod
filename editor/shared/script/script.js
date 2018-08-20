@@ -508,22 +508,23 @@ function editCurRoomPalette(environment, parameters, onReturn) {
  	if(palette.hasOwnProperty(palId))
  	{
  		// found palette property by id
- 		console.log("~~~ found palette property by id " + palId)
+ 		//console.log("~~~ found palette property by id " + palId)
  		room[roomId].pal = palId; 		
  	}
  	else{
  		// look for it by its name
- 		console.log("~~~ did not find palette property by id " + palId)	
+ 		//console.log("~~~ did not find palette property by id " + palId)	
 
  		for (var pal in palette) {
- 			console.log("Palette Index: " + pal);
+ 			//console.log("Palette Index: " + pal);
 			if (palette.hasOwnProperty(pal)) {			
 				if(palette[pal].name === palId){
-					console.log("FOUND " + palId + " using palette of " + pal);
+					//console.log("FOUND " + palId + " using palette of " + pal);
+					console.warning("having to find palette by name rather than id, could be buggy");
 					room[roomId].pal = pal; 
 				}
 				else{
-					console.log("Using default");
+					//console.log("Using default");
 					room[roomId].pal = "0";
 				}
 				//console.log("^ palette name  " + JSON.stringify(pal.name));

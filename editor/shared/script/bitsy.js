@@ -352,6 +352,7 @@ function load_game(game_data, startWithTitle) {
 	
 	// bitsy-advanced-dialogue-tags -jacktrick
 	var dialogFuncs = advancedDialogFuncMgr.dialogFunctions;
+	storedTimerFunctions = [];
 	
 	for (var tag in dialogFuncs) {
 		game_data = convertDialogTags(game_data, tag);
@@ -389,7 +390,7 @@ function load_game(game_data, startWithTitle) {
 	    itm: item,
 	    item: item,
 	};
-	
+
 	onready(startWithTitle);
 }
 

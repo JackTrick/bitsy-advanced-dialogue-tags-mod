@@ -39,7 +39,7 @@ I tried to be fairly limited with my changes to avoid the possibility of bugs th
 
 ### Difference From the Hacks
 
-* You can choose to either use parentheses "()" or curly braces "{}" in dialogue to call the hack functions. Note that you may want to use parentheses to maintain compatibility with standard hack editing conventions.
+* You can choose to either use parentheses "()" or curly braces "{}" in dialogue to call the hack functions. My preference is parentheses for compatibility with other hacked editors, and to better differentiate the unofficial hacks.
 * You should not need to add anything to the exported HTML file to support the above hacks. However, if you want to use any of the other bitsy hacks, you should be able to add them to the bottom of the HTML file as you have in the past.
 
 ```
