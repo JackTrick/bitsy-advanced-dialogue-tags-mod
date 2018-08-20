@@ -28,7 +28,7 @@ THIS EDITOR MAY NOT WORK IN CHROME/EXPLORER. RUNNING IN FIREFOX IS RECOMMENDED.
 EXPORTED GAMES SHOULD STILL RUN IN ANY BROWSER
 ```
 
-## :smiley_cat: Example File :tea:
+### :smiley_cat: Example File :tea:
 An example level showcasing the changes is playable [here](https://jacktrick.itch.io/bitsy-advanced-dialog-tag-mods-example).
 
 The level can be downloaded [here](https://github.com/JackTrick/bitsyhack/tree/master/example). You can load it into the editor for an example of most of the new functionality.
