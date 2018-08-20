@@ -186,7 +186,7 @@ Using the (Now) variant function will immediately start the timer, but the curre
 :heavy_exclamation_mark: If you define in a dialog a series of Now timers with a condition, and the condition evaluates to false, all following Now timers in that dialog will be ignored. Standard timers will evaluate individually regardless of any of their conditions.
 
 #### :paintbrush: Edit Image From Dialog, :alarm_clock: Timer Variant
-![Edit Image Timer Example](https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-changeimage-timer.gif?raw=true)
+![Edit Image Timer Example](https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-changeimage-timer.gif?raw=true =250x)
 
 ```
 Usage: (imageTimer "<duration>, <map>, <target>, <source>")
