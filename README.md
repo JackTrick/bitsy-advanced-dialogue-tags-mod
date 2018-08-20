@@ -248,7 +248,9 @@ Example: (exitTimer "3000, FinalRoom, 8, 4")
 ```
 
 #### :rainbow: Edit Current Room Palette From Dialog, :alarm_clock: Timer Variant
+
 <img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-palette-timer.gif?raw=true" width="30%">
+
 ```
 Usage: (curRoomPalTimer "<duration>, <palette index>")
        (curRoomPalTimer "<duration>, <palette index>, <condition>")
