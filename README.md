@@ -232,6 +232,7 @@ Example: (endTimer "5000")
 
 #### :door: Exit From Dialog, :alarm_clock: Timer Variant
 <img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-cutscene.gif?raw=true" width="30%">
+
 Note, the Timer Variant of Exit From Dialog does NOT support sprite coordinate positioning at this time.
 ```
 WARNING: In exit coordinates, the TOP LEFT tile is (0,0). 
