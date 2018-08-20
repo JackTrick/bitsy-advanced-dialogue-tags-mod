@@ -50,6 +50,7 @@ but you will need to manually add the hacks to your HTML file for them to work.
 ## Using the Specific Hacks
 
 ### :paintbrush: Edit Image From Dialog
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-changeimage.gif?raw=true" width="30%">
 You can use this to edit the image data of sprites (including the player avatar), items, and tiles through dialog.
 
 Image data can be replaced with data from another image with (image) and (imageNow), or the palette index can be set with (imagePal) and (imagePalNow).
@@ -111,6 +112,8 @@ Example: (end)
 ```
 
 ### :door: Exit From Dialog
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-exitroom.gif?raw=true" width="30%">
+
 Lets you exit to another room from dialog (including inside conditionals). 
 
 Use it to make an invisible sprite that acts as a conditional exit, use it to warp somewhere after a conversation, use it to put a guard at your gate who only lets you in once you're disguised, use it to require payment before the ferryman will take you across the river.
@@ -143,6 +146,7 @@ Example: I am a cat(p)and my dialogue contains multitudes
 ```
 
 ### :rainbow: Edit Current Room Palette From Dialog
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-palette.gif?raw=true" width="30%">
 
 Lets you edit the current room's palette index from dialog (including inside conditionals).
 
@@ -186,7 +190,7 @@ Using the (Now) variant function will immediately start the timer, but the curre
 :heavy_exclamation_mark: If you define in a dialog a series of Now timers with a condition, and the condition evaluates to false, all following Now timers in that dialog will be ignored. Standard timers will evaluate individually regardless of any of their conditions.
 
 #### :paintbrush: Edit Image From Dialog, :alarm_clock: Timer Variant
-<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-changeimage-timer.gif?raw=true" width="40%">
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-changeimage-timer.gif?raw=true" width="30%">
 
 ```
 Usage: (imageTimer "<duration>, <map>, <target>, <source>")
@@ -227,7 +231,7 @@ Example: (endTimer "5000")
 ```
 
 #### :door: Exit From Dialog, :alarm_clock: Timer Variant
-
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-cutscene.gif?raw=true" width="30%">
 Note, the Timer Variant of Exit From Dialog does NOT support sprite coordinate positioning at this time.
 ```
 WARNING: In exit coordinates, the TOP LEFT tile is (0,0). 
@@ -243,7 +247,7 @@ Example: (exitTimer "3000, FinalRoom, 8, 4")
 ```
 
 #### :rainbow: Edit Current Room Palette From Dialog, :alarm_clock: Timer Variant
-
+<img src="https://github.com/JackTrick/bitsy-advanced-dialogue-tags-mod/blob/master/example/ex-palette-timer.gif?raw=true" width="30%">
 ```
 Usage: (curRoomPalTimer "<duration>, <palette index>")
        (curRoomPalTimer "<duration>, <palette index>, <condition>")
